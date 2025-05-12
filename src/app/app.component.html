@@ -14,9 +14,17 @@
       <img src="logotxt.png" />
     </div>
   </div>
+  <div class="menu">
+    <p *ngFor="let menu of data;let i=index" class="clickable" [class.selected]="selectedMenu==i" (click)="clickMenu(i)">{{menu.fr.nom}}</p>
+  </div>
 
   <div class="content">
-    <p>Currently working on website..</p>
+    <div class="left">
+      <p>{{data[selectedMenu].fr.content}}</p>
+    </div>
+    <div class="right">
+      <img src="{{selectedMenu}}/{{img}}.png" />
+    </div>
   </div>
 
   <div class="footer">

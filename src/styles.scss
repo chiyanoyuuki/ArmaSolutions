@@ -11,6 +11,9 @@
     height:inherit;
     font-family: "general" !important;
 }
+p{
+    filter: drop-shadow(1px 1px 3px black);
+}
 img{
     filter: drop-shadow(1px 1px 3px black) drop-shadow(1px 1px 3px black);
 }
@@ -25,6 +28,14 @@ body{
     background-color:#0C192A;
 }
 .container{
+    .clickable:hover{
+        cursor:pointer;
+        scale:1.2;
+    }
+    .selected{
+        filter: drop-shadow(1px 1px 3px red);
+        text-decoration: underline;
+    }
     .header{
         height: 12vh;
         display: flex;
@@ -41,10 +52,30 @@ body{
             }
         }
     }
+    .menu{
+        display:flex;
+        justify-content: space-evenly;
+        margin-top:5vh;
+    }
     .content{
         margin-top:10vh;
-        p{
-            text-align: center;
+        display:flex;
+        justify-content: space-between;
+        text-align: justify;
+        div{
+            width:48%;
+        }
+        .left{
+
+        }
+        .right{
+            img{
+                width: -moz-available;
+                max-height: 45vh;
+                object-fit: cover;
+                overflow: hidden;
+                object-position: top;
+            }
         }
     }
     .footer{
@@ -68,6 +99,7 @@ body{
 //ANIMATIONS
 
 .intro-container {
+    pointer-events: none;
   position: fixed;
   top: 0;
   left: 0;
