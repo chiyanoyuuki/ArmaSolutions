@@ -71,6 +71,7 @@ body{
         .right{
             img{
                 width: -moz-available;
+                width: -webkit-fill-available;
                 max-height: 45vh;
                 object-fit: cover;
                 overflow: hidden;
