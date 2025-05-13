@@ -37,7 +37,7 @@ export class AppComponent
         nom: "Solutions for Businesses",
         content: "At SwissKey Solutions, we help businesses save time and boost productivity through tailor-made digital tools. Automate repetitive tasks, centralize your data, streamline internal processes, and enhance team collaboration. Each solution is custom-built to fit your industry and workflow. We design intuitive, high-performance, and secure interfaces that transform your day-to-day operations."
       },
-      imgs: ["0","1","2"]
+      imgs: ["0","1","2","3","4"]
     },
     {
       icone: "🌐",
