@@ -8,6 +8,8 @@
 </div>
 
 <div class="container" [class.mobile]="mobile">
+  <img src="{{lg}}.png" (click)="lg=='fr'?lg='en':lg='fr'" class="lang clickable"/>
+
   <div class="header">
     <div class="logo">
       <img src="logo.png" [ngClass]="currentAnimation"/>
@@ -16,12 +18,12 @@
   </div>
 
   <div class="menu">
-    <p *ngFor="let menu of data;let i=index" class="clickable" [class.selected]="selectedMenu==i" (click)="clickMenu(i)">{{menu.icone}}{{mobile?'':'&nbsp;'+menu.fr.nom}}</p>
+    <p *ngFor="let menu of data;let i=index" class="clickable" [class.selected]="selectedMenu==i" (click)="clickMenu(i)">{{menu.icone}}{{mobile?'':'&nbsp;'+menu[lg].nom}}</p>
   </div>
 
   <div class="content">
     <div class="left">
-      <p>{{data[selectedMenu].fr.content}}</p>
+      <p>{{data[selectedMenu][lg].content}}</p>
     </div>
     <div class="right">
       <div class="slider-container">

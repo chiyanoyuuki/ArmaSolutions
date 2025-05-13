@@ -34,6 +34,14 @@ body{
   min-width:300px;
   max-width:1000px;
   margin:auto;
+  .lang{
+    position: fixed;
+    top: 3vh;
+    left: 3vw;
+    width: 40px;
+    height: auto;
+    z-index: 1;
+  }
     .clickable:hover{
         cursor:pointer;
         scale:1.2;
@@ -43,6 +51,7 @@ body{
         text-decoration: underline;
     }
     .header{
+      pointer-events: none;
         height: 12vh;
         display: flex;
         justify-content: center;

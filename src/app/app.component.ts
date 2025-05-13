@@ -23,6 +23,7 @@ export class AppComponent
   imgInterval:any;
   currentIndex = 0;
   previousIndex = 0;
+  lg = "en";
 
   data:any = [
     {
