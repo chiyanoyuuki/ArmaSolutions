@@ -133,7 +133,7 @@ body{
 }
 .mobile{
   p{
-    font-size:17px;
+    font-size:16px;
   }
   .selected{
     text-decoration: none;
@@ -159,6 +159,10 @@ body{
   }
   .footer{
     display:block;
+    p{
+      text-align: center;
+      justify-content: center;
+    }
   }
 }
 
