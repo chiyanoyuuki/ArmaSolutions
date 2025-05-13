@@ -130,16 +130,19 @@ body{
     text-decoration: none;
   }
   .menu{
+    margin-top:3vh;
     p{
       font-size:40px;
     }
   }
   .content{
+    margin-top:3vh;
     display:block;
     div{
       width:unset;
     }
     .right{
+      margin-top:2vh;
       img{
         max-height:20vh;
       }
