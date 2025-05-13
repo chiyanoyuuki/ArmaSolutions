@@ -28,6 +28,7 @@ body{
     background-color:#0C192A;
 }
 .container{
+  min-width:300px;
     .clickable:hover{
         cursor:pointer;
         scale:1.2;
@@ -73,9 +74,37 @@ body{
                 width: -moz-available;
                 width: -webkit-fill-available;
                 max-height: 45vh;
-                object-fit: cover;
+                object-fit: contain;
                 overflow: hidden;
                 object-position: top;
+            }
+            .slider-container {
+              position: relative;
+              width: 100%;
+              height: 300px; /* adapte à tes besoins */
+              overflow: hidden;
+            }
+
+            .slider-image {
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
+              opacity: 0;
+              transform: translateX(100%);
+              transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+            }
+
+            .slider-image.active {
+              opacity: 1;
+              transform: translateX(0);
+              z-index: 2;
+            }
+
+            .slider-image.previous {
+              opacity: 0;
+              transform: translateX(-100%);
+              z-index: 1;
             }
         }
     }
@@ -95,6 +124,30 @@ body{
             margin-right:10px;
         }
     }
+}
+.mobile{
+  .selected{
+    text-decoration: none;
+  }
+  .menu{
+    p{
+      font-size:40px;
+    }
+  }
+  .content{
+    display:block;
+    div{
+      width:unset;
+    }
+    .right{
+      img{
+        max-height:20vh;
+      }
+    }
+  }
+  .footer{
+    display:block;
+  }
 }
 
 //ANIMATIONS
