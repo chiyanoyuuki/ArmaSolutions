@@ -20,6 +20,7 @@ export class AppComponent
 
   selectedMenu = -1;
   img = 0;
+  num = 0;
   imgInterval:any;
   currentIndex = 0;
   previousIndex = 0;
@@ -62,6 +63,51 @@ export class AppComponent
         content: "Put your project right into your users’ hands. SwissKey Solutions develops smooth, intuitive mobile and desktop applications. Whether for business, commercial, or entertainment purposes, we turn your ideas into powerful, reliable, and scalable apps. From UX/UI design to deployment, we handle the entire development cycle to deliver an app that fits your vision and performs exceptionally."
       },
       imgs: ["0","1","2","3"]
+    },
+    {
+      icone: "📋",
+      fr: {
+        nom: "En détail",
+        content: [
+          {
+            nom: "🗓️ Outil de Gestion de Planning & Suivi du Chiffre d’Affaires",
+            desc: "Cet outil sur mesure permet de gérer efficacement son planning quotidien tout en suivant l’évolution de son chiffre d’affaires. Grâce aux données enregistrées jour par jour, il offre une vue claire des revenus générés par mois ou par année. Idéal pour les indépendants ou petites structures souhaitant gagner en visibilité sur leur activité, optimiser leur temps et prendre des décisions éclairées."
+          },
+          {
+            nom: "🧾 Outil de Création de Devis Personnalisés",
+            desc: "Cet outil permet de générer des devis professionnels et personnalisés en quelques clics, avec un format adapté à l’image de l’utilisateur. Connecté à l’outil de planning, il peut préremplir certaines données automatiquement. Les devis peuvent être exportés en PDF ou en JPG, prêts à être envoyés ou imprimés. Idéal pour gagner du temps tout en gardant une présentation soignée et cohérente."
+          },
+          {
+            nom: "🧾 Outil de Facturation Connecté & Automatisé",
+            desc: "Cet outil facilite la création rapide de factures professionnelles, en s’appuyant sur les données des devis ou du planning. Il assure une cohérence des informations, calcule automatiquement les totaux, et permet l’export en PDF ou JPG. Grâce à son intégration avec les autres outils, il devient un véritable assistant administratif, réduisant les erreurs et gagnant un temps précieux."
+          },
+          {
+            nom: "📄 Outil de Création de Documents PDF/JPG Personnalisés",
+            desc: "Cet outil permet de générer des documents PDF ou JPG entièrement personnalisés, à partir de modèles adaptés à l’activité de l’utilisateur. Que ce soit pour des attestations, des comptes rendus, des fiches client ou tout autre document professionnel, il offre une mise en page maîtrisée et une génération en un clic. Compatible avec les autres outils (planning, devis, factures), il garantit cohérence et gain de temps."
+          }
+        ]
+      },
+      en: {
+        nom: "In detail",
+        content: [
+          {
+            nom: "🗓️ Schedule Management & Revenue Tracking Tool",
+            desc: "This custom-built tool helps manage daily schedules while tracking revenue over time. By recording day-to-day activity, it provides a clear overview of earnings by month or by year. Perfect for freelancers or small businesses looking to gain visibility on their performance, optimize their time, and make informed decisions."
+          },
+          {
+            nom: "🧾 Custom Quote Creation Tool",
+            desc: "This tool allows users to quickly create professional, customized quotes with a format tailored to their brand. Linked to the scheduling tool, it can automatically prefill data for faster entry. Quotes can be exported as PDF or JPG, ready to send or print. Perfect for saving time while ensuring a polished, consistent presentation."
+          },
+          {
+            nom: "🧾 Connected & Automated Invoicing Tool",
+            desc: "This tool makes it easy to generate professional invoices quickly, using data from quotes or the scheduling system. It ensures consistent information, automatically calculates totals, and supports PDF or JPG export. Seamlessly integrated with your other tools, it becomes a powerful administrative assistant, helping reduce errors and save valuable time."
+          },
+          {
+            nom: "📄 Custom PDF/JPG Document Generator",
+            desc: "This tool lets users generate fully customized PDF or JPG documents from templates tailored to their business needs. Whether it’s for certificates, reports, client summaries, or other professional documents, it offers precise layout control and one-click generation. Compatible with the other tools (scheduling, quotes, invoices), it ensures consistency and time savings."
+          }
+        ]
+      }
     },
     {
       icone: "👨‍💼",
@@ -112,14 +158,29 @@ export class AppComponent
     this.img = 0;
     this.previousIndex = 0;
     this.currentIndex = 1;
-    if(this.selectedMenu!=3)
+    if(this.selectedMenu<3)
     {
       this.imgInterval = setInterval(() => {
         this.previousIndex = this.currentIndex;
         this.currentIndex = (this.currentIndex + 1) % this.data[this.selectedMenu].imgs.length;
       }, 2000);
     }
-    else{this.previousIndex = -1;this.currentIndex = 0;}
+    else{this.previousIndex = this.previousIndex = this.data[this.selectedMenu][this.lg].content.length-1;this.currentIndex = 0;}
+  }
+
+  go(nb:any)
+  {
+    if(nb==1)
+    {
+      this.previousIndex = this.currentIndex;
+      this.currentIndex = (this.currentIndex + 1) % this.data[this.selectedMenu][this.lg].content.length;
+    }
+    else
+    {
+      this.currentIndex = this.previousIndex;
+      this.previousIndex = this.previousIndex - 1;
+      if(this.previousIndex<0)this.previousIndex = this.data[this.selectedMenu][this.lg].content.length-1;
+    }
   }
 
   initAnimations()
@@ -145,5 +206,10 @@ export class AppComponent
         this.currentAnimation = next;
       }, 50); // délai pour que le DOM détecte le retrait/ajout
     }, 5000);
+  }
+
+  isString(content: any)
+  {
+    return typeof content === 'string';
   }
 }

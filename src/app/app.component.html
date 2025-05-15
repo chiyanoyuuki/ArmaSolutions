@@ -21,7 +21,7 @@
     <p *ngFor="let menu of data;let i=index" class="clickable" [class.selected]="selectedMenu==i" (click)="clickMenu(i)">{{menu.icone}}{{mobile?'':'&nbsp;'+menu[lg].nom}}</p>
   </div>
 
-  <div class="content">
+  <div class="content" *ngIf="isString(data[selectedMenu][lg].content)">
     <div class="left">
       <p>{{data[selectedMenu][lg].content}}</p>
     </div>
@@ -30,6 +30,28 @@
         <img
           *ngFor="let img of data[selectedMenu].imgs; let i = index"
           src="{{selectedMenu}}/{{img}}.png"
+          [class.active]="i === currentIndex"
+          [class.previous]="i === previousIndex"
+          class="slider-image"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="content" *ngIf="!isString(data[selectedMenu][lg].content)">
+    <div class="left">
+      <div class="title">
+        <p class="clickable goleft" (click)="go(-1)"><</p>
+        <p>{{data[selectedMenu][lg].content[currentIndex].nom}}</p>
+        <p class="clickable goright" (click)="go(1)">></p>
+      </div>
+      <p>{{data[selectedMenu][lg].content[currentIndex].desc}}</p>
+    </div>
+    <div class="right">
+      <div class="slider-container">
+        <img
+          *ngFor="let nimg of data[selectedMenu][lg].content; let i = index"
+          src="{{selectedMenu}}/{{i}}.png"
           [class.active]="i === currentIndex"
           [class.previous]="i === previousIndex"
           class="slider-image"

@@ -81,7 +81,24 @@ body{
             width:48%;
         }
         .left{
-
+          .title{
+            display: flex;
+            justify-content: center;
+            width: calc(100% - 10vw);
+            padding: 0vh 5vw 2vh 5vw;
+          }
+          .goleft{
+            position: absolute;
+            left: 0px;
+            font-size: 60px;
+            top: -15px;
+          }
+          .goright{
+            position: absolute;
+            right: 0px;
+            font-size: 60px;
+            top: -15px;
+          }
         }
         .right{
             img{
