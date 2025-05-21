@@ -208,6 +208,16 @@ export class AppComponent
     }, 5000);
   }
 
+  sendMail()
+  {
+      const to = "swisskeysolutions.contact@gmail.com";
+      const subject = "Contact from website";
+      const body = encodeURIComponent("Name : \r\n\r\nMessage : ");
+      
+      const mailtoLink = `mailto:${to}?subject=${subject}&body=${body}`;
+      window.location.href = mailtoLink;
+  }
+
   isString(content: any)
   {
     return typeof content === 'string';
