@@ -115,14 +115,14 @@ body{
             .slider-container {
               position: relative;
               width: 100%;
-              height: 250px; /* adapte à tes besoins */
+              height: 150px; /* adapte à tes besoins */
               overflow: hidden;
             }
 
             .slider-image {
               position: absolute;
               width: 100%;
-              height: 100%;
+              height: 150px;
               object-fit: contain;
               opacity: 0;
               transform: translateX(100%);
