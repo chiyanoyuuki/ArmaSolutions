@@ -26,6 +26,12 @@
   .right{
     width:20%!important;
   }
+  .goleft{
+    top: -25px!important;
+  }
+  .goright{
+    top: -25px!important;
+  }
 }
 p{
     filter: drop-shadow(1px 1px 3px black);
@@ -127,13 +133,13 @@ body{
           .goleft{
             position: absolute;
             left: 0px;
-            font-size: 60px;
+            font-size: 60px!important;
             top: -15px;
           }
           .goright{
             position: absolute;
             right: 0px;
-            font-size: 60px;
+            font-size: 60px!important;
             top: -15px;
           }
         }
