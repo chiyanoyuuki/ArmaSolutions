@@ -1,4 +1,4 @@
-<div *ngIf="showIntro" class="intro-container" [class.mobile]="mobile">
+<div *ngIf="showIntro" class="intro-container" [class.mobile]="mobile" >
   <img src="logo.png" class="key key-animation" />
   <div class="left-panel" [class.slide-left]="panelsOpened">
   </div>
@@ -7,7 +7,7 @@
   </div>
 </div>
 
-<div class="container" [class.mobile]="mobile">
+<div class="container" [class.mobile]="mobile" [class.littleScreen]="littleScreen">
   <img src="{{lg}}.png" (click)="lg=='fr'?lg='en':lg='fr'" class="lang clickable"/>
 
   <div class="header">

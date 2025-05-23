@@ -16,6 +16,11 @@
     height:inherit;
     font-family: "general" !important;
 }
+.littleScreen{
+  p{
+    font-size:14px !important;
+  }
+}
 p{
     filter: drop-shadow(1px 1px 3px black);
 }

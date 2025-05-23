@@ -124,15 +124,22 @@ export class AppComponent
   ]
 
   mobileThreshold = 700;
+  littleScreenThreshold = 500;
   mobile = false;
+  littleScreen = false;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     let innerHeight = event.target.innerHeight;
     let innerWidth = event.target.innerWidth;
 
+    console.log(innerHeight, innerWidth);
+
     if (innerHeight > innerWidth && innerWidth < this.mobileThreshold){this.mobile = true;}
     else {this.mobile = false;}
+
+    if (innerHeight < innerWidth && innerHeight < this.littleScreenThreshold){this.littleScreen = true;}
+    else {this.littleScreen = false;}
   }
 
 
@@ -143,6 +150,9 @@ export class AppComponent
 
     if (innerHeight > innerWidth && innerWidth < this.mobileThreshold)this.mobile = true;
     else this.mobile = false;
+
+    if (innerHeight < innerWidth && innerHeight < this.littleScreenThreshold){this.littleScreen = true;}
+    else {this.littleScreen = false;}
 
     this.initAnimations();
     this.clickMenu(0);
