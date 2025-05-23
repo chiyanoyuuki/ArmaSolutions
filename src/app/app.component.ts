@@ -110,7 +110,7 @@ export class AppComponent
       }
     },
     {
-      icone: "👤",
+      icone: "👨‍💼",
       fr: {
         nom: "ME",
         content: "Je suis Charles Poure, développeur indépendant passionné, avec près de 10 ans d'expérience dans la création de solutions web, logicielles et mobiles sur mesure. Spécialisé dans l’automatisation des tâches administratives, j’aide les TPE, PME et indépendants à gagner un temps précieux en concevant des outils simples, efficaces et adaptés à leurs besoins. De la facturation à la gestion d’agenda, j’ai développé des applications concrètes qui optimisent le quotidien des professionnels. Mon approche à distance, centrée sur l’écoute et l’agilité, me permet de livrer rapidement des solutions performantes qui transforment votre organisation."

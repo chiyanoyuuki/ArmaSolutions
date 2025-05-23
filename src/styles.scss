@@ -209,8 +209,16 @@ body{
     div{
       width:unset;
     }
+    .left{
+      .goleft{
+        top:-25px;
+      }
+      .goright{
+        top:-25px;
+      }
+    }
     .right{
-      height:150px;
+      height: 12vh;
       margin-top:2vh;
       img{
         max-height:20vh;
