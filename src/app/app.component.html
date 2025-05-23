@@ -22,6 +22,7 @@
   </div>
 
   <div class="content" *ngIf="isString(data[selectedMenu][lg].content)">
+    <p *ngIf="mobile" class="title">{{data[selectedMenu][lg].nom}}</p>
     <div class="left">
       <p>{{data[selectedMenu][lg].content}}</p>
     </div>
@@ -39,6 +40,7 @@
   </div>
 
   <div class="content" *ngIf="!isString(data[selectedMenu][lg].content)">
+    <p *ngIf="mobile" class="title">{{data[selectedMenu][lg].nom}}</p>
     <div class="left">
       <div class="title">
         <p class="clickable goleft" (click)="go(-1)"><</p>
@@ -61,7 +63,7 @@
   </div>
 
   <div class="footer">
-    <p class="clickable" (click)="sendMail()"><img src="mail.png"/>swisskeysolutions.contact&#64;gmail.com</p>
+    <p class="clickable" (click)="sendMail()"><img src="mail.png"/><u>swisskeysolutions.contact&#64;gmail.com</u></p>
     <p><img src="tel.png"/>+33 6 82 01 57 34</p>
   </div>
 </div>

@@ -163,7 +163,7 @@ export class AppComponent
       this.imgInterval = setInterval(() => {
         this.previousIndex = this.currentIndex;
         this.currentIndex = (this.currentIndex + 1) % this.data[this.selectedMenu].imgs.length;
-      }, 2000);
+      }, 3000);
     }
     else{this.previousIndex = this.previousIndex = this.data[this.selectedMenu][this.lg].content.length-1;this.currentIndex = 0;}
   }
