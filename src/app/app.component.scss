@@ -1,0 +1,291 @@
+.menus{
+    margin: auto;
+    position:fixed;
+    background-color:white;
+    z-index: 1;
+    padding-top:1vh;
+    height: 10vh;
+    margin-bottom:5vh;
+    width: 90vw;
+    border-bottom: 1px solid #00000020;
+    padding-bottom: 1vh;
+    .margauto{
+        margin:auto;
+    }
+    .logo{
+        height:inherit;
+        filter:unset!important;
+    }
+    div{
+        width:85vw;
+        p{
+            margin:auto;
+        }
+    }
+    .imgs{
+        width:20vw;
+        .keylogo{
+            width:5vw;
+            margin:auto;
+        }
+    }
+    .mobile{
+        overflow:unset;
+        .clicked{
+            filter: brightness(100) drop-shadow(0px 0px 5px var(--bleufonce)) drop-shadow(0px 0px 5px var(--bleufonce));
+        }
+    }
+}
+.txt{
+    padding:5vh 5vw;
+    width:50%;
+}
+.fitimg{
+    width: 50%;
+  object-fit: cover;
+  object-position: top;
+}
+.margbot{
+    margin-bottom:2vh;
+}
+.content{
+    padding-top:16vh;
+}
+.show{
+    opacity:1;
+}
+
+.top{
+    margin-bottom:5vh;
+    height:25vh;
+    .resume{
+        width:40vw;
+        margin:auto;
+        .secondary{
+            margin:2vh 0vw;
+        }
+    }
+    img{
+        margin:auto;
+        width:auto;
+        height:inherit;
+    }
+}
+
+.bottom{
+    margin-bottom:5vh;
+    .bloc{
+        position:relative;
+        padding-left:calc(5vh + 2vw);
+        width:30vw;
+        margin:2vh 2vw;
+        img{
+            height:5vh;
+            left:0px;
+            margin:auto;
+            position: absolute;
+        }
+    }
+}
+
+.avis{
+    background-color: white;
+    filter: drop-shadow(2px 2px 3px black);
+    padding: 2vh 2vw;
+    border-radius: 15px;
+    .title{
+        margin-bottom: 2vh;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .link{
+        position: relative;
+        left:80%;
+    }
+    .secondary{
+        padding:2vh 5vw;
+        text-align: justify;
+    }
+}
+
+footer{
+    margin-top:10vh;
+    border-top: 1px solid #00000020;
+    background-color: #eee;
+    padding: 2vh 2vw;
+    .footer-links{
+        margin:auto;
+        margin-left: 2vw;
+        p{
+            width:fit-content;
+        }
+    }
+    .infos{
+        text-align: right;
+        margin: auto;
+        margin-right: 2vw;
+    }
+}
+
+.about{
+    div{
+        background-color: #eee;
+        position: relative;
+        width:80%;
+        border-radius: 20px;
+        border-bottom: 2px ridge var(--bleufonce);
+        border-top: 1px solid black;
+        margin-bottom:5vh;
+        padding:2vh 2vw;
+        p:nth-child(1){
+            margin-bottom:1vh;
+        }
+    }
+    div:nth-child(even){
+        margin-left:15%;
+        text-align: right;
+        border-left: 5px ridge var(--bleufonce);
+    }
+    div:nth-child(odd){
+        border-right: 5px ridge var(--bleufonce);
+    }
+}
+
+.contact{
+    .inputs{
+        margin-top:5vh;
+        div{
+            margin-bottom:5px;
+            p{
+                width:30%;
+                text-align: right;
+                padding-right: 10px;
+                margin-top: auto;
+                margin-bottom: auto;
+            }
+            input, textarea{
+                padding: 10px;
+                border-color: var(--bleufonce);
+            }
+            textarea{
+                width:60%;
+                height: 80px;
+                resize: none;
+            }
+        }
+    }
+}
+
+.mentions, .politique{
+    p{
+        padding-left:5vw;
+    }
+    .blue{
+        padding-left:0vw;
+        margin:2vh 0vw;
+    }
+}
+
+.carousel-container {
+  overflow: hidden;
+  width: 100%;
+  padding: 1rem 0;
+}
+
+.carousel-track {
+  display: flex;
+  animation: scroll 60s linear infinite;
+  gap: 1.5rem;
+}
+
+.carousel-track img {
+  height: 360px;
+  width: 250px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+  flex-shrink: 0;
+  object-position: left;
+  filter: blur(1px);
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-2500px); } /* Ajuste selon la longueur de la piste */
+}
+
+.mobile{
+    overflow: hidden;
+    .bigtxt{
+        font-size:25px;
+    }
+    .top{
+        height:unset;
+        .imgpc{
+            height:15vh;
+        }
+    }
+    .bottom{
+        .bloc{
+            height:unset;
+            img{
+                height:5vh;
+            }
+        }
+    }
+    .avis{
+        .experience{
+            display:block;
+            img{
+                margin:auto;
+                display: flex;
+                justify-content: center;
+            }
+        }
+        .link{
+            left:60%;
+        }
+    }
+}
+.footermobile{
+    display:block;
+    .flex{
+        display:block;
+    }
+    img{
+        margin:auto;
+        margin-top:5vh;
+        margin-bottom:5vh;
+        display: flex;
+        justify-content: center;
+    }
+}
+.mobilesolutions{
+    .txt{
+        width:unset;
+    }
+    img{width:95%;}
+}
+
+@keyframes spin-alternate {
+  0%   { transform: rotate(0deg); }
+  33%  { transform: rotate(720deg); }  /* tourne vite à droite (2 tours en 40% du temps) */
+  100% { transform: rotate(360deg); }  /* tourne lentement à gauche (retour à 1 tour sens antihoraire) */
+}
+
+.gear{
+    filter:unset!important;
+  animation: spin-alternate 4s linear infinite;
+}
+
+@keyframes color-alternate {
+  0%   { color:black;font-size:18px;text-shadow:unset; }
+  33%  { color:var(--bleufonce);font-size:20px;text-shadow:0px 0px 1px var(--bleufonce) 0px 0px 1px var(--bleufonce);  }  /* tourne vite à droite (2 tours en 40% du temps) */
+  100% { color:black;font-size:18px;text-shadow:unset;  }  /* tourne lentement à gauche (retour à 1 tour sens antihoraire) */
+}
+
+.coloralternate{
+    filter:unset!important;
+  animation: color-alternate 4s linear infinite;
+  height: 7vh;
+}

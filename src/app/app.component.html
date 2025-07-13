@@ -1,69 +1,382 @@
-<div *ngIf="showIntro" class="intro-container" [class.mobile]="mobile" >
-  <img src="logo.png" class="key key-animation" />
-  <div class="left-panel" [class.slide-left]="panelsOpened">
+<div class="menus flex">
+    <img class="logo" src="logofull.png" />
+  <div class="flex around margauto" *ngIf="!mobile">
+    <p *ngFor="let menu of data.menus;let i=index" (click)="clickMenu(i)" [class.clicked]="menuClicked==i" class="clickable">{{menu}}</p>
   </div>
-  <div class="right-panel" [class.slide-right]="panelsOpened">
-    <img class="serrure" src="serrure.png">
-  </div>
-</div>
-
-<div class="container" [class.mobile]="mobile" [class.littleScreen]="littleScreen">
-  <img src="{{lg}}.png" (click)="lg=='fr'?lg='en':lg='fr'" class="lang clickable"/>
-
-  <div class="header">
-    <div class="logo">
-      <img src="logo.png" [ngClass]="currentAnimation"/>
-      <img src="logotxt.png" />
-    </div>
-  </div>
-
-  <div class="menu">
-    <p *ngFor="let menu of data;let i=index" class="clickable" [class.selected]="selectedMenu==i" (click)="clickMenu(i)">{{menu.icone}}{{mobile?'':'&nbsp;'+menu[lg].nom}}</p>
-  </div>
-
-  <div class="content" *ngIf="isString(data[selectedMenu][lg].content)">
-    <p *ngIf="mobile" class="title">{{data[selectedMenu][lg].nom}}</p>
-    <div class="left">
-      <p>{{data[selectedMenu][lg].content}}</p>
-    </div>
-    <div class="right">
-      <div class="slider-container">
-        <img
-          *ngFor="let img of data[selectedMenu].imgs; let i = index"
-          src="{{selectedMenu}}/{{img}}.png"
-          [class.active]="i === currentIndex"
-          [class.previous]="i === previousIndex"
-          class="slider-image"
-        />
-      </div>
-    </div>
-  </div>
-
-  <div class="content" *ngIf="!isString(data[selectedMenu][lg].content)">
-    <p *ngIf="mobile" class="title">{{data[selectedMenu][lg].nom}}</p>
-    <div class="left">
-      <div class="title">
-        <p class="clickable goleft" (click)="go(-1)"><</p>
-        <p>{{data[selectedMenu][lg].content[currentIndex].nom}}</p>
-        <p class="clickable goright" (click)="go(1)">></p>
-      </div>
-      <p>{{data[selectedMenu][lg].content[currentIndex].desc}}</p>
-    </div>
-    <div class="right">
-      <div class="slider-container">
-        <img
-          *ngFor="let nimg of data[selectedMenu][lg].content; let i = index"
-          src="{{selectedMenu}}/{{i}}.png"
-          [class.active]="i === currentIndex"
-          [class.previous]="i === previousIndex"
-          class="slider-image"
-        />
-      </div>
-    </div>
-  </div>
-
-  <div class="footer">
-    <p class="clickable" (click)="sendMail()"><img src="mail.png"/><u>swisskeysolutions.contact&#64;gmail.com</u></p>
-    <p><img src="tel.png"/>+33 6 82 01 57 34</p>
+  <div class="flex around margauto mobile" *ngIf="mobile">
+    <svg (click)="clickMenu(0)" [class.clicked]="menuClicked==0" class="clickable" width="48" height="48" fill="rgb(50,109,252)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+    </svg>
+    <svg (click)="clickMenu(1)" [class.clicked]="menuClicked==1" class="clickable" width="48" height="48" fill="rgb(50,109,252)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M19.14 12.94a7.007 7.007 0 0 0 0-1.88l2.03-1.58-1.91-3.32-2.39 1a6.922 6.922 0 0 0-1.6-.93l-.36-2.54H9.89l-.36 2.54a6.922 6.922 0 0 0-1.6.93l-2.39-1-1.91 3.32 2.03 1.58a7.007 7.007 0 0 0 0 1.88l-2.03 1.58 1.91 3.32 2.39-1c.5.38 1.04.69 1.6.93l.36 2.54h3.83l.36-2.54c.56-.24 1.1-.55 1.6-.93l2.39 1 1.91-3.32-2.03-1.58zM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z"/>
+    </svg>
+    <svg (click)="clickMenu(2)" [class.clicked]="menuClicked==2" class="clickable" width="48" height="48" fill="rgb(50,109,252)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M11 17h2v-6h-2v6zm1-15C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-11h2V7h-2v2z"/>
+    </svg>
+    <svg (click)="clickMenu(3)" [class.clicked]="menuClicked==3" class="clickable" width="48" height="48" fill="rgb(50,109,252)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+    </svg>
   </div>
 </div>
+
+<div class="content" [class.mobile]="mobile">
+  <div class="show" *ngIf="menuClicked==0">
+    <div class="flex top">
+      <div class="resume">
+        <p class="bigtxt">Des <span class="blue bigtxt">solutions digitales</span> pour les professionnels</p>
+        <p class="secondary">Automatisez vos processus et optimisez votre productivité</p>
+        <button (click)="clickMenu(1)" [class.move-right]="moved">En savoir plus →</button>
+      </div>
+      <img class="imgpc" src="pc.png" />
+    </div>
+
+    <div class="bottom flex wrap around">
+      <div class="bloc">
+        <img src="roue.png" class="gear"/>
+        <p class="coloralternate">Automatisation</p>
+        <p class="secondary">Gagnez du temps en automatisant les tâches répétitives</p>
+      </div>
+      <div class="bloc">
+        <img src="doc.png" />
+        <p class="coloralternate">Documents sur mesure</p>
+        <p class="secondary">Générez des documents personnalisés à la demande de manière simplifiée</p>
+      </div>
+      <div class="bloc">
+        <img src="db.png" />
+        <p class="coloralternate">Gestion des données</p>
+        <p class="secondary">Exploitez vos données avec des outils d'analyse puissants</p>
+      </div>
+      <div class="bloc">
+        <img src="cubes.png" />
+        <p class="coloralternate">Centralisation</p>
+        <p class="secondary">Accédez à vos outils spécialisés depuis une seule plateforme</p>
+      </div>
+    </div>
+
+    <div class="avis margbot">
+      <p class="title"><span class="blue title">Cloé C</span> - Première réussite</p>
+      <div class="flex experience">
+        <img class="tinyimg" src="cloe.jpg"/>
+        <p class="secondary"><b>Cloé C</b>, auto-entrepreneuse dans le milieu du maquillage et des coiffures de mariées, <b>perdait un temps précieux</b> à gérer ses <b>plannings, devis et factures</b> à travers plusieurs <b>outils dispersés.</b> Elle avait aussi besoin d'un <b>site pour promouvoir son activité.</b> Grâce à mes solutions, elle dispose aujourd'hui d'une <b>plateforme unique</b> où elle gère son planning, génère en quelques clics des <b>devis et factures personnalisés,</b> le tout à son image. J'ai également conçu pour elle un <b>site web complet</b> qui présente son activité et lui permet d'élargir son réseau et sa clientèle dans l'univers du mariage.</p>
+      </div>
+      <button class="link" (click)="openSiteCloe()">Son site</button>
+    </div>
+
+    <div class="carousel-container">
+      <p class="bigtxt blue margbot">Certains projets</p>
+      <div class="carousel-track">
+        <img src="1/3.png"/>
+        <img src="1/1.png"/>
+        <img src="1/2.png"/>
+        <img src="1/0.png"/>
+        <img src="tarif.jpg"/>
+        <img src="2/0.png"/>
+        <img src="2/1.png"/>
+        <img src="2/2.png"/>
+        <img src="2/3.png"/>
+
+        <img src="1/3.png"/>
+        <img src="1/1.png"/>
+        <img src="1/2.png"/>
+        <img src="1/0.png"/>
+        <img src="tarif.jpg"/>
+        <img src="2/0.png"/>
+        <img src="2/1.png"/>
+        <img src="2/2.png"/>
+        <img src="2/3.png"/>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="show mentions" *ngIf="menuClicked==-1">
+    <p class=" bigtxt blue">Mentions Légales</p>
+    <p>Conformément aux dispositions des articles 6-III et 19 de la loi n°2004-575 du 21 juin 2004 pour la Confiance dans l’économie numérique, dite L.C.E.N., il est porté à la connaissance des utilisateurs et visiteurs du site les présentes mentions légales.</p>
+    <p class="blue">Éditeur du site</p>
+    <p><b>Nom :</b> POURE Charles</p>
+    <p><b>Statut :</b> Entrepreneur individuel – Micro-entreprise</p>
+    <p><b>SIRET :</b> 943032342 00017</p>
+    <p><b>Responsable de la publication :</b> SwissKey Solutions</p>
+    <p><b>Adresse :</b> Gargas, France</p>
+    <p><b>Téléphone :</b> +33 6 82 01 57 34</p>
+    <p><b>Email :</b> swisskeysolutions.contact&#64;gmail.com</p>
+    <p><b>Site Web :</b> <a href="https://swisskey-solutions.com" target="_blank">https://swisskey-solutions.com/</a></p>
+    <p>TVA non applicable selon l’article 293 B du CGI</p>
+    <p class="blue">Hébergement</p>
+    <p><b>Hébergeur :</b> OVH</p>
+    <p><b>Adresse :</b> 2 rue Kellermann – 59100 Roubaix – France</p>
+    <p><b>Site Web :</b> www.ovh.com</p>
+    <p class="blue">Propriété intellectuelle</p>
+    <p>Tous les éléments du site (textes, images, graphismes, logo, icônes, etc.) sont la propriété exclusive de SwissKey Solutions, sauf mention contraire.</p>
+    <p>Toute reproduction, représentation, modification, publication, adaptation de tout ou partie du site, quel que soit le moyen ou le procédé utilisé, est interdite sans autorisation écrite préalable.</p>
+    <p class="blue">Responsabilité</p>
+    <p>L’éditeur s’efforce de fournir des informations aussi précises que possible. Toutefois, il ne pourra être tenu responsable des omissions, inexactitudes ou carences dans la mise à jour.</p>
+    <p>L'utilisateur est responsable de l’utilisation qu’il fait des informations présentes sur le site.</p>
+    <p class="blue">Données personnelles</p>
+    <p>Les données éventuellement collectées via le formulaire de contact ne sont utilisées que pour répondre aux messages.</p>
+    <p>Aucune donnée personnelle n’est vendue ni transmise à des tiers.</p>
+    <p>Conformément au RGPD, vous pouvez demander la consultation, la modification ou la suppression de vos données en envoyant un mail à : <a href="mailto:swisskeysolutions.contact@gmail.com">swisskeysolutions.contact&#64;gmail.com</a>.</p>
+    <p class="blue">Cookies</p>
+    <p>Le site peut utiliser des cookies pour améliorer l’expérience utilisateur.</p>
+    <p>Vous pouvez configurer votre navigateur pour refuser ces cookies.</p>
+    <p class="blue">Droit applicable</p>
+    <p>Les présentes mentions sont régies par la loi française.</p>
+    <p>Tout litige sera de la compétence exclusive des tribunaux français.</p>
+  </div>
+
+  <div class="show politique" *ngIf="menuClicked==-2">
+    <p class="bigtxt blue">Politique de confidentialité</p>
+    <p class="blue">Mise à jour le : 13/07/2025</p>
+    <p>Le site <a href="https://swisskey-solutions.com" target="_blank">https://swisskey-solutions.com</a> s’engage à garantir la confidentialité des données personnelles de ses utilisateurs et à respecter la législation en vigueur, notamment le Règlement (UE) 2016/679 (RGPD).</p>
+
+    <p class="blue">Données collectées</p>
+    <p>Lorsque vous utilisez notre site ou remplissez un formulaire de contact, nous pouvons collecter les données suivantes :</p>
+    <p>• Nom et prénom</p>
+    <p>• Adresse e-mail</p>
+    <p>• Téléphone (si renseigné)</p>
+    <p>• Nom de votre entreprise / activité</p>
+    <p>• Message ou informations partagées via les formulaires</p>
+    <p>Nous ne collectons aucune donnée sensible (religion, santé, opinions politiques, etc.).</p>
+
+    <p class="blue">Utilisation des données</p>
+    <p>Ces données sont utilisées uniquement pour :</p>
+    <p>• Répondre à vos messages ou demandes de devis</p>
+    <p>• Vous recontacter dans le cadre de votre projet</p>
+    <p>• Améliorer notre service et notre site</p>
+    <p>Elles ne sont jamais vendues, échangées ou partagées avec des tiers.</p>
+
+    <p class="blue">Cookies</p>
+    <p>Le site peut utiliser des cookies pour améliorer l’expérience utilisateur.</p>
+    <p>Vous pouvez configurer votre navigateur pour refuser ces cookies.</p>
+
+    <p class="blue">Durée de conservation</p>
+    <p>• 12 mois après la dernière prise de contact, si aucune collaboration n’a eu lieu</p>
+    <p>• 3 ans maximum si une relation commerciale s’est établie (sauf obligation légale supérieure)</p>
+
+    <p class="blue">Vos droits</p>
+    <p>Conformément à la législation en vigueur, vous disposez des droits suivants :</p>
+    <p>• Droit d’accès à vos données</p>
+    <p>• Droit de rectification ou de suppression</p>
+    <p>• Droit d’opposition ou de limitation du traitement</p>
+    <p>• Droit à la portabilité des données</p>
+    <p>Vous pouvez exercer ces droits en envoyant un email à : <a href="mailto:swisskeysolutions.contact@gmail.com">swisskeysolutions.contact&#64;gmail.com</a></p>
+
+    <p class="blue">Responsable du traitement</p>
+    <p>Les données sont traitées par :</p>
+    <p>• Charles POURE</p>
+    <p>• Micro-entrepreneur – SIRET 943032342 00017</p>
+    <p>• Adresse communiquée sur demande</p>
+
+    <p class="blue">Sécurité</p>
+    <p>Nous mettons en œuvre toutes les mesures techniques et organisationnelles nécessaires pour garantir la sécurité de vos données (protocole HTTPS, accès restreint, sauvegardes régulières...).</p>
+
+    <p class="blue">Modifications</p>
+    <p>Cette politique peut être mise à jour à tout moment. La date de dernière mise à jour est indiquée en haut de la page.</p>
+
+    <p class="blue">Contact</p>
+    <p>Pour toute question relative à la confidentialité de vos données :</p>
+    <p>Email : <a href="mailto:swisskeysolutions.contact@gmail.com">swisskeysolutions.contact&#64;gmail.com</a></p>
+
+  </div>
+
+  <div class="show" *ngIf="!mobile&&menuClicked==1">
+    <p class="blue bigtxt">Nos solutions digitales sur mesure</p>
+    <p class="blue margbot">Des outils pensés pour simplifier votre quotidien professionnel.</p>
+    
+    <div class="flex between">
+      <div class="txt">
+        <p class="blue">Création de site web</p>
+        <p>Présentez votre activité avec un site professionnel, responsive et entièrement personnalisé.</p>
+        <p>Intégré à votre plateforme, il valorise votre image et facilite la prise de contact avec vos clients.</p>
+      </div>
+      <img class="mediumimg fitimg" src="1/1.png"/>
+    </div>
+
+    <div class="flex between ">
+      <img class="mediumimg fitimg" src="1/0.png"/>
+      <div class="txt">
+        <p class="blue">Centralisation des outils</p>
+        <p>Finis les outils éparpillés ! Tout est regroupé dans une seule interface claire, conçue sur mesure selon vos besoins.</p>
+        <p>Une solution unique entièrement personalisée pour piloter l’ensemble de votre activité.</p>
+      </div>
+    </div>
+
+    <div class="flex between">
+      <div class="txt">
+        <p class="blue">Documents personnalisés</p>
+        <p>Créez en quelques clics vos devis, factures ou contrats aux couleurs de votre entreprise.</p>
+        <p>Chaque document est généré automatiquement à partir de vos données, prêt à être envoyé ou imprimé.</p>
+      </div>
+      <img class="mediumimg fitimg" src="3/1.png"/>
+    </div>
+
+    <div class="flex between">
+      <img class="mediumimg fitimg" src="2/1.png"/>
+      <div class="txt">
+        <p class="blue">Une expertise sans limite technique</p>
+        <p>Votre besoin est unique ? Parfait. Que ce soit un site vitrine, une plateforme sur mesure, une application mobile, un bot intelligent, ou même un jeu vidéo complet, je suis capable de tout concevoir de zéro, selon vos idées les plus simples ou les plus ambitieuses.</p>
+        <p>Je suis à l’aise avec les interfaces, les bases de données, la logique métier, l’optimisation des performances, les animations complexes, l’IA, les API, et bien plus encore. Vous avez une idée inhabituelle ou un défi technique à relever ? Je peux la transformer en réalité concrète.</p>
+      </div>
+    </div>
+
+    <div class="flex between ">
+      <div class="txt">
+        <p class="blue">Automatisation, gestion et analyse des données</p>
+        <p>Automatisez les tâches chronophages et répétitives de votre activité : envois d’e-mails, relances, confirmations, rappels ou encore sauvegardes. Vous gagnez du temps et limitez les erreurs manuelles.</p>
+        <p>Suivez en temps réel votre activité avec des indicateurs clairs : chiffre d'affaires, répartition clients, historique des ventes, ou encore statistiques personnalisées selon votre métier..</p>
+      </div>
+      <img class="mediumimg fitimg" src="tarif.jpg"/>
+    </div>
+
+  </div>
+
+  <div class="show mobilesolutions" *ngIf="mobile&&menuClicked==1">
+    <p class="blue bigtxt">Nos solutions digitales sur mesure</p>
+    <p class="blue margbot">Des outils pensés pour simplifier votre quotidien professionnel.</p>
+    
+    <div>
+      <div class="txt">
+        <p class="blue">Création de site web</p>
+        <p>Présentez votre activité avec un site professionnel, responsive et entièrement personnalisé.</p>
+        <p>Intégré à votre plateforme, il valorise votre image et facilite la prise de contact avec vos clients.</p>
+      </div>
+      <img class="mediumimg fitimg" src="1/1.png"/>
+    </div>
+
+    <div>
+      <div class="txt">
+        <p class="blue">Centralisation des outils</p>
+        <p>Finis les outils éparpillés ! Tout est regroupé dans une seule interface claire, conçue sur mesure selon vos besoins.</p>
+        <p>Une solution unique entièrement personalisée pour piloter l’ensemble de votre activité.</p>
+      </div>
+      <img class="mediumimg fitimg" src="1/0.png"/>
+    </div>
+
+    <div>
+      <div class="txt">
+        <p class="blue">Documents personnalisés</p>
+        <p>Créez en quelques clics vos devis, factures ou contrats aux couleurs de votre entreprise.</p>
+        <p>Chaque document est généré automatiquement à partir de vos données, prêt à être envoyé ou imprimé.</p>
+      </div>
+      <img class="mediumimg fitimg" src="3/1.png"/>
+    </div>
+
+    <div>
+      <div class="txt">
+        <p class="blue">Une expertise sans limite technique</p>
+        <p>Votre besoin est unique ? Parfait. Que ce soit un site vitrine, une plateforme sur mesure, une application mobile, un bot intelligent, ou même un jeu vidéo complet, je suis capable de tout concevoir de zéro, selon vos idées les plus simples ou les plus ambitieuses.</p>
+        <p>Je suis à l’aise avec les interfaces, les bases de données, la logique métier, l’optimisation des performances, les animations complexes, l’IA, les API, et bien plus encore. Vous avez une idée inhabituelle ou un défi technique à relever ? Je peux la transformer en réalité concrète.</p>
+      </div>
+      <img class="mediumimg fitimg" src="2/1.png"/>
+    </div>
+
+    <div>
+      <div class="txt">
+        <p class="blue">Automatisation, gestion et analyse des données</p>
+        <p>Automatisez les tâches chronophages et répétitives de votre activité : envois d’e-mails, relances, confirmations, rappels ou encore sauvegardes. Vous gagnez du temps et limitez les erreurs manuelles.</p>
+        <p>Suivez en temps réel votre activité avec des indicateurs clairs : chiffre d'affaires, répartition clients, historique des ventes, ou encore statistiques personnalisées selon votre métier..</p>
+      </div>
+      <img class="mediumimg fitimg" src="tarif.jpg"/>
+    </div>
+
+  </div>
+
+  <div class="show about" *ngIf="menuClicked==2">
+
+    <div>
+      <p class="blue">Une mission simple : simplifier la vie des professionnels</p>
+      <p>En tant que développeur passionné, j’ai souvent croisé des indépendants et petites structures noyés dans des outils dispersés, des tableaux Excel, ou des applications mal adaptées. C’est de ce constat qu’est née SwissKey Solutions : créer des plateformes digitales sur mesure, accessibles, et centrées sur le gain de temps, l’efficacité, et la simplicité.</p>
+    </div>
+
+    <div>
+      <p class="blue">Mon parcours et ma philosophie de travail</p>
+      <p class="margbot">Fort de plus de 10 ans d’expérience dans le développement web et logiciel, j’ai exercé au sein de grandes ESN (Entreprises de Services du Numérique) et pour des clients finaux dans des secteurs variés. Cette diversité m’a permis de travailler sur des projets complexes, d’apprendre à répondre aux exigences de qualité, de performance, de sécurité, et de m’adapter à des environnements métier très différents.</p>
+      <p>Au fil des années, j’ai affiné ma méthodologie de développement, en mettant toujours l’accent sur le propre, le maintenable et le performant. Je maîtrise l’ensemble de la chaîne de création d’un outil digital — de l’analyse du besoin à la mise en ligne, en passant par l’architecture, le design UX, le développement, le test et le support.</p>
+    </div>
+
+    <div>
+      <p class="blue">Un code 100 % original, pensé pour chaque client</p>
+      <p class="margbot">Je conçois tous les projets from scratch, sans template préconstruit ni code réutilisé d’un client à l’autre. Chaque ligne de code est écrite sur mesure en fonction du besoin exprimé, du métier, des habitudes de l’utilisateur final et des objectifs à long terme. Ce choix garantit une solution :</p>
+      <p>- 100 % personnalisée</p>
+      <p>- légère et optimisée</p>
+      <p>- évolutive dans le temps</p>
+      <p class="margbot">- distinctive, avec une vraie identité propre</p>
+      <p>Que ce soit pour une application métier, une interface de gestion, ou un site vitrine, je m’engage à livrer un produit unique, fait à la main, adapté à vos processus et à votre image.</p>
+    </div>
+
+    <div>
+      <p class="blue">Un accompagnement sur-mesure</p>
+      <p>Au-delà du code, je mets un point d'honneur à comprendre vos enjeux concrets. Mon rôle n’est pas juste de développer, mais de traduire votre métier en outils utiles, simples à prendre en main et durables.</p>
+      <p class="margbot">Je travaille dans un esprit :</p>
+      <p>de collaboration directe, sans jargon inutile -</p>
+      <p>de transparence sur les coûts et délais -</p>
+      <p>de rigueur dans l'exécution -</p>
+      <p>et toujours avec une volonté de faire "mieux que bien" -</p>
+    </div>
+
+    <div>
+      <p class="blue">Des tarifs transparents et adaptés</p>
+      <p class="margbot">Chaque projet étant unique, mes tarifs s’adaptent à vos besoins et à votre façon de travailler. Je propose deux modes de collaboration :</p>
+      <p>- À l’heure, pour les missions ponctuelles, évolutives ou à petit budget</p>
+      <p class="margbot">- Au forfait, avec un tarif fixe défini ensemble selon le cahier des charges, idéal pour les projets complets (site web, plateforme métier, etc.)</p>
+      <p>Dans tous les cas, vous savez à l’avance ce que vous payez : pas de surprise, pas de frais cachés. Je privilégie toujours la clarté, la souplesse et le dialogue, pour que vous puissiez avancer sereinement.</p>
+    </div>
+
+  </div>
+
+  <div class="show contact" *ngIf="menuClicked==3">
+
+    <p class="blue bigtxt">Discutons de votre projet</p>
+    <p class="blue margbot">Que vous ayez une idée précise ou simplement l’envie de faire évoluer votre activité, je suis à votre écoute. N’hésitez pas à me contacter, je réponds généralement dans la journée.</p>
+
+    <div class="inputs">
+      <div class="flex">
+        <p>Nom, Prénom : </p>
+        <input type="text" placeholder="John Doe.."/>
+      </div>
+      <div class="flex">
+        <p>Email : </p>
+        <input type="text" placeholder="john.doe@gmail.com.."/>
+      </div>
+      <div class="flex">
+        <p>Téléphone : </p>
+        <input type="text" placeholder="+33 6 01 02 03 04"/>
+      </div>
+      <div class="flex">
+        <p>Votre activité / entreprise : </p>
+        <input type="text" placeholder="+33 6 01 02 03 04"/>
+      </div>
+      <div class="flex">
+        <p>Message libre : </p>
+        <textarea type="text" placeholder="Votre demande.."></textarea>
+      </div>
+    </div>
+    <div class="bottom flex between">
+      <p class="blue">Vos données ne seront jamais partagées.</p>
+      <p class="secondary">Disponible du lundi au vendredi de 9h à 18h</p>
+    </div>
+    <button class="auto">Envoyer</button>
+    
+  </div>
+
+</div>
+
+<footer class="flex between" [class.footermobile]="mobile">
+  <div class="footer-links">
+    <p *ngFor="let menu of data.menus;let i=index" class="clickable" (click)="clickMenu(i)" [class.blue]="menuClicked==i">{{menu}}</p>
+    <p>&nbsp;</p>
+    <p class="clickable" (click)="clickMenu(-1)" [class.blue]="menuClicked==-1">Mentions légales</p>
+    <p class="clickable" (click)="clickMenu(-2)" [class.blue]="menuClicked==-2">Politique de confidentialité</p>
+  </div>
+  <div class="flex">
+    <img class="tinyimg" src="4/0.png" *ngIf="mobile"/>
+    <div class="infos">
+      <p>Charles POURE</p>
+      <p><a href="mailto:swisskeysolutions.contact@gmail.com">swisskeysolutions.contact&#64;gmail.com</a></p>
+      <p>+33 6 82 01 57 34</p>
+      <p>&nbsp;</p>
+      <p>© 2025 SwissKey Solutions. Tous droits réservés.</p>
+    </div>
+    <img class="tinyimg" src="4/0.png" *ngIf="!mobile"/>
+  </div>
+</footer>
