@@ -1,5 +1,8 @@
 <div class="menus flex">
-    <img class="logo" src="logofull.png" />
+  <div class="imgs">
+    <img src="logofull0.png" [ngClass]="currentAnimation"/>
+    <img src="logofull1.png" />
+  </div>
   <div class="flex around margauto" *ngIf="!mobile">
     <p *ngFor="let menu of data.menus;let i=index" (click)="clickMenu(i)" [class.clicked]="menuClicked==i" class="clickable">{{menu}}</p>
   </div>
@@ -19,8 +22,10 @@
   </div>
 </div>
 
-<div class="content" [class.mobile]="mobile">
-  <div class="show" *ngIf="menuClicked==0">
+<div class="transition" [@fadeContent]="fadeState"></div>
+
+<div class="content" [class.mobile]="mobile" >
+  <div *ngIf="menuClicked==0">
     <div class="flex top">
       <div class="resume">
         <p class="bigtxt">Des <span class="blue bigtxt">solutions digitales</span> pour les professionnels</p>
@@ -89,7 +94,7 @@
 
   </div>
 
-  <div class="show mentions" *ngIf="menuClicked==-1">
+  <div class="mentions" *ngIf="menuClicked==-1">
     <p class=" bigtxt blue">Mentions Légales</p>
     <p>Conformément aux dispositions des articles 6-III et 19 de la loi n°2004-575 du 21 juin 2004 pour la Confiance dans l’économie numérique, dite L.C.E.N., il est porté à la connaissance des utilisateurs et visiteurs du site les présentes mentions légales.</p>
     <p class="blue">Éditeur du site</p>
@@ -124,7 +129,7 @@
     <p>Tout litige sera de la compétence exclusive des tribunaux français.</p>
   </div>
 
-  <div class="show politique" *ngIf="menuClicked==-2">
+  <div class="politique" *ngIf="menuClicked==-2">
     <p class="bigtxt blue">Politique de confidentialité</p>
     <p class="blue">Mise à jour le : 13/07/2025</p>
     <p>Le site <a href="https://swisskey-solutions.com" target="_blank">https://swisskey-solutions.com</a> s’engage à garantir la confidentialité des données personnelles de ses utilisateurs et à respecter la législation en vigueur, notamment le Règlement (UE) 2016/679 (RGPD).</p>
@@ -179,7 +184,7 @@
 
   </div>
 
-  <div class="show" *ngIf="!mobile&&menuClicked==1">
+  <div *ngIf="!mobile&&menuClicked==1">
     <p class="blue bigtxt">Nos solutions digitales sur mesure</p>
     <p class="blue margbot">Des outils pensés pour simplifier votre quotidien professionnel.</p>
     
@@ -230,7 +235,7 @@
 
   </div>
 
-  <div class="show mobilesolutions" *ngIf="mobile&&menuClicked==1">
+  <div class="mobilesolutions" *ngIf="mobile&&menuClicked==1">
     <p class="blue bigtxt">Nos solutions digitales sur mesure</p>
     <p class="blue margbot">Des outils pensés pour simplifier votre quotidien professionnel.</p>
     
@@ -281,7 +286,7 @@
 
   </div>
 
-  <div class="show about" *ngIf="menuClicked==2">
+  <div class="about" *ngIf="menuClicked==2">
 
     <div>
       <p class="blue">Une mission simple : simplifier la vie des professionnels</p>
@@ -324,7 +329,7 @@
 
   </div>
 
-  <div class="show contact" *ngIf="menuClicked==3">
+  <div class="contact" *ngIf="menuClicked==3">
 
     <p class="blue bigtxt">Discutons de votre projet</p>
     <p class="blue margbot">Que vous ayez une idée précise ou simplement l’envie de faire évoluer votre activité, je suis à votre écoute. N’hésitez pas à me contacter, je réponds généralement dans la journée.</p>

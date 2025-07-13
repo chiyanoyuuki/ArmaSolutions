@@ -1,6 +1,8 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, isDevMode } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -8,7 +10,15 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [RouterOutlet, FormsModule, CommonModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+  animations: [
+    trigger('fadeContent', [
+      state('visible', style({ opacity: 1 })),
+      state('hidden', style({ opacity: 0 })),
+      transition('visible => hidden', [animate('300ms ease-out')]),
+      transition('hidden => visible', [animate('300ms ease-in')]),
+    ]),
+  ]
 })
 export class AppComponent 
 {
@@ -19,6 +29,11 @@ export class AppComponent
   menuClicked = 0;
   moved = false;
   intervalId?: any;
+
+  fadeState = 'hidden';
+
+  animations = ['animate-rotate', 'animate-zoom', 'animate-flip'];
+  currentAnimation = '';
 
   data : any = {
     menus: [
@@ -55,9 +70,21 @@ export class AppComponent
     if (innerHeight < innerWidth && innerHeight < this.littleScreenThreshold){this.littleScreen = true;}
     else {this.littleScreen = false;}    
 
-    this.intervalId = setInterval(() => {
-      this.moved = !this.moved; // toggle gauche/droite
-    }, 3000); // toutes les 3 secondes, change de position
+    this.initAnimations();
+  }
+
+  initAnimations()
+  {
+    setInterval(() => {
+      let next;
+      do {
+        next = this.animations[Math.floor(Math.random() * this.animations.length)];
+      } while (next === this.currentAnimation);
+      this.currentAnimation = '';
+      setTimeout(() => {
+        this.currentAnimation = next;
+      }, 50);
+    }, 4000);
   }
 
   openSiteCloe()
@@ -66,7 +93,15 @@ export class AppComponent
   }
 
   clickMenu(i:any){
-    this.menuClicked = i;
-    window.scrollTo(0, 0);
+    if (this.menuClicked === i) return;
+
+    this.fadeState = 'visible';
+
+    let timeo = setTimeout(() => {
+      this.menuClicked = i;
+      window.scrollTo(0, 0);
+      this.fadeState = 'hidden';
+      clearInterval(timeo);
+    }, 300); // temps du fade-out
   }
 }
