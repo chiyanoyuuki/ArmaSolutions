@@ -4,6 +4,7 @@ import { Component, HostListener, isDevMode } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterOutlet } from '@angular/router';
+import emailjs from 'emailjs-com';
 
 @Component({
   selector: 'app-root',
@@ -29,6 +30,13 @@ export class AppComponent
   menuClicked = 0;
   moved = false;
   intervalId?: any;
+  contact:any = [
+    {nom:"Nom, Prénom",value:""},
+    {nom:"Email",value:""},
+    {nom:"Téléphone",value:""},
+    {nom:"Activité, Entreprise",value:""},
+    {nom:"Message",value:""},
+  ]
 
   fadeState = 'hidden';
 
@@ -103,5 +111,31 @@ export class AppComponent
       this.fadeState = 'hidden';
       clearInterval(timeo);
     }, 300); // temps du fade-out
+  }
+
+  sendEmail() {
+  let msg = "";
+  this.contact.forEach((elem:any) => {
+    if(elem.value!="") msg += elem.nom + " : " + elem.value + " - "
+  });
+  const now = new Date(); 
+  const formatted = `${now.getDate().toString().padStart(2, '0')}/${(now.getMonth()+1).toString().padStart(2, '0')}/${now.getFullYear()} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+
+    emailjs.send(
+      'service_onqsj9j',
+      'template_ezyf24c',
+      {
+        name: "SwissKey Solutions Contact",
+        from: "swisskeysolutions.contact@gmail.com",
+        msg: msg,
+        object: this.contact[0].value + " - " + formatted,
+        to: "swisskeysolutions.contact@gmail.com",
+      },
+      'jm7bOgtwxvcaNTq_u' // ou public key
+    ).then((res) => {
+      console.log('Email sent successfully!', res.status, res.text);
+    }).catch((err) => {
+      console.error('Failed to send email.', err);
+    });
   }
 }

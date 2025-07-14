@@ -337,30 +337,30 @@
     <div class="inputs">
       <div class="flex">
         <p>Nom, Prénom : </p>
-        <input type="text" placeholder="John Doe.."/>
+        <input type="text" placeholder="John Doe.." [(ngModel)]="contact[0].value"/>
       </div>
       <div class="flex">
         <p>Email : </p>
-        <input type="text" placeholder="john.doe@gmail.com.."/>
+        <input type="text" placeholder="john.doe@gmail.com.." [(ngModel)]="contact[1].value"/>
       </div>
       <div class="flex">
         <p>Téléphone : </p>
-        <input type="text" placeholder="+33 6 01 02 03 04"/>
+        <input type="text" placeholder="+33 6 01 02 03 04" [(ngModel)]="contact[2].value"/>
       </div>
       <div class="flex">
         <p>Votre activité / entreprise : </p>
-        <input type="text" placeholder="+33 6 01 02 03 04"/>
+        <input type="text" placeholder="+33 6 01 02 03 04" [(ngModel)]="contact[3].value"/>
       </div>
       <div class="flex">
         <p>Message libre : </p>
-        <textarea type="text" placeholder="Votre demande.."></textarea>
+        <textarea type="text" placeholder="Votre demande.." [(ngModel)]="contact[4].value"></textarea>
       </div>
     </div>
     <div class="bottom flex between">
       <p class="blue">Vos données ne seront jamais partagées.</p>
       <p class="secondary">Disponible du lundi au vendredi de 9h à 18h</p>
     </div>
-    <button class="auto">Envoyer</button>
+    <button class="auto" (click)="sendEmail()">Envoyer</button>
     
   </div>
 
