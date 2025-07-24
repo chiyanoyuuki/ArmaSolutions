@@ -99,3 +99,20 @@ button:hover{
         border: 5px ridge var(--bleufonce);
   filter: blur(1px);
 }
+
+.fromRight{
+    opacity: 0;
+    transform: translateX(50%);
+    transition: transform 0.7s ease-out, opacity 0.7s ease-out!important;
+}
+
+.fromLeft {
+    opacity: 0;
+    transform: translateX(-50%);
+    transition: transform 0.7s ease-out, opacity 0.7s ease-out!important;
+}
+
+.fromLeft.enter-from-direction, .fromRight.enter-from-direction {
+    opacity: 1!important;
+    transform: translateX(0)!important;
+}

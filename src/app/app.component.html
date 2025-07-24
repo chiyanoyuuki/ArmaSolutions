@@ -32,7 +32,7 @@
         <p class="secondary">Automatisez vos processus et optimisez votre productivité</p>
         <button (click)="clickMenu(1)" [class.move-right]="moved">En savoir plus →</button>
       </div>
-      <img class="imgpc" src="pc.png" />
+      <img class="imgpc fromRight" src="pc.png" />
     </div>
 
     <div class="bottom flex wrap around">
@@ -58,7 +58,7 @@
       </div>
     </div>
 
-    <div class="avis margbot">
+    <div class="avis fromLeft margbot" appScrollAppear>
       <p class="title"><span class="blue title">Cloé C</span> - Première réussite</p>
       <div class="flex experience">
         <img class="tinyimg" src="cloe.jpg"/>
@@ -188,7 +188,7 @@
     <p class="blue bigtxt">Nos solutions digitales sur mesure</p>
     <p class="blue margbot">Des outils pensés pour simplifier votre quotidien professionnel.</p>
     
-    <div class="flex between">
+    <div class="flex between fromRight" appScrollAppear>
       <div class="txt">
         <p class="blue">Création de site web</p>
         <p>Présentez votre activité avec un site professionnel, responsive et entièrement personnalisé.</p>
@@ -197,7 +197,7 @@
       <img class="mediumimg fitimg" src="1/1.png"/>
     </div>
 
-    <div class="flex between ">
+    <div class="flex between fromLeft" appScrollAppear>
       <img class="mediumimg fitimg" src="1/0.png"/>
       <div class="txt">
         <p class="blue">Centralisation des outils</p>
@@ -206,7 +206,7 @@
       </div>
     </div>
 
-    <div class="flex between">
+    <div class="flex between fromRight" appScrollAppear>
       <div class="txt">
         <p class="blue">Documents personnalisés</p>
         <p>Créez en quelques clics vos devis, factures ou contrats aux couleurs de votre entreprise.</p>
@@ -215,7 +215,7 @@
       <img class="mediumimg fitimg" src="3/1.png"/>
     </div>
 
-    <div class="flex between">
+    <div class="flex between fromLeft" appScrollAppear>
       <img class="mediumimg fitimg" src="2/1.png"/>
       <div class="txt">
         <p class="blue">Une expertise sans limite technique</p>
@@ -224,7 +224,7 @@
       </div>
     </div>
 
-    <div class="flex between ">
+    <div class="flex between fromRight" appScrollAppear>
       <div class="txt">
         <p class="blue">Automatisation, gestion et analyse des données</p>
         <p>Automatisez les tâches chronophages et répétitives de votre activité : envois d’e-mails, relances, confirmations, rappels ou encore sauvegardes. Vous gagnez du temps et limitez les erreurs manuelles.</p>
@@ -288,18 +288,18 @@
 
   <div class="about" *ngIf="menuClicked==2">
 
-    <div>
+    <div class="fromLeft" appScrollAppear>
       <p class="blue">Une mission simple : simplifier la vie des professionnels</p>
       <p>En tant que développeur passionné, j’ai souvent croisé des indépendants et petites structures noyés dans des outils dispersés, des tableaux Excel, ou des applications mal adaptées. C’est de ce constat qu’est née SwissKey Solutions : créer des plateformes digitales sur mesure, accessibles, et centrées sur le gain de temps, l’efficacité, et la simplicité.</p>
     </div>
 
-    <div>
+    <div class="fromRight" appScrollAppear>
       <p class="blue">Mon parcours et ma philosophie de travail</p>
       <p class="margbot">Fort de plus de 10 ans d’expérience dans le développement web et logiciel, j’ai exercé au sein de grandes ESN (Entreprises de Services du Numérique) et pour des clients finaux dans des secteurs variés. Cette diversité m’a permis de travailler sur des projets complexes, d’apprendre à répondre aux exigences de qualité, de performance, de sécurité, et de m’adapter à des environnements métier très différents.</p>
       <p>Au fil des années, j’ai affiné ma méthodologie de développement, en mettant toujours l’accent sur le propre, le maintenable et le performant. Je maîtrise l’ensemble de la chaîne de création d’un outil digital — de l’analyse du besoin à la mise en ligne, en passant par l’architecture, le design UX, le développement, le test et le support.</p>
     </div>
 
-    <div>
+    <div class="fromLeft" appScrollAppear>
       <p class="blue">Un code 100 % original, pensé pour chaque client</p>
       <p class="margbot">Je conçois tous les projets from scratch, sans template préconstruit ni code réutilisé d’un client à l’autre. Chaque ligne de code est écrite sur mesure en fonction du besoin exprimé, du métier, des habitudes de l’utilisateur final et des objectifs à long terme. Ce choix garantit une solution :</p>
       <p>- 100 % personnalisée</p>
@@ -309,7 +309,7 @@
       <p>Que ce soit pour une application métier, une interface de gestion, ou un site vitrine, je m’engage à livrer un produit unique, fait à la main, adapté à vos processus et à votre image.</p>
     </div>
 
-    <div>
+    <div class="fromRight" appScrollAppear>
       <p class="blue">Un accompagnement sur-mesure</p>
       <p>Au-delà du code, je mets un point d'honneur à comprendre vos enjeux concrets. Mon rôle n’est pas juste de développer, mais de traduire votre métier en outils utiles, simples à prendre en main et durables.</p>
       <p class="margbot">Je travaille dans un esprit :</p>
@@ -319,7 +319,7 @@
       <p>et toujours avec une volonté de faire "mieux que bien" -</p>
     </div>
 
-    <div>
+    <div class="fromLeft" appScrollAppear>
       <p class="blue">Des tarifs transparents et adaptés</p>
       <p class="margbot">Chaque projet étant unique, mes tarifs s’adaptent à vos besoins et à votre façon de travailler. Je propose deux modes de collaboration :</p>
       <p>- À l’heure, pour les missions ponctuelles, évolutives ou à petit budget</p>

@@ -5,11 +5,12 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterOutlet } from '@angular/router';
 import emailjs from 'emailjs-com';
+import { ScrollAppearDirective } from './scroll-appear.directive';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FormsModule, CommonModule],
+  imports: [RouterOutlet, FormsModule, CommonModule, ScrollAppearDirective],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   animations: [
@@ -93,6 +94,11 @@ export class AppComponent
         this.currentAnimation = next;
       }, 50);
     }, 4000);
+
+    setTimeout(() => {
+      const img = document.querySelector('.imgpc');
+      img?.classList.add('enter-from-direction');
+    }, 300);
   }
 
   openSiteCloe()
@@ -109,8 +115,16 @@ export class AppComponent
       this.menuClicked = i;
       window.scrollTo(0, 0);
       this.fadeState = 'hidden';
+      if(this.menuClicked === 0){
+          setTimeout(() => {
+          const img = document.querySelector('.imgpc');
+          img?.classList.add('enter-from-direction');
+        }, 300);
+      }
       clearInterval(timeo);
     }, 300); // temps du fade-out
+
+    
   }
 
   sendEmail() {
