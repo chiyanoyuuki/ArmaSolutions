@@ -4,6 +4,7 @@ import { Component, HostListener, isDevMode } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterOutlet } from '@angular/router';
+import * as DATA from '../../public/data.json';
 import emailjs from 'emailjs-com';
 import { ScrollAppearDirective } from './scroll-appear.directive';
 
@@ -38,27 +39,19 @@ export class AppComponent
     {nom:"Activité, Entreprise",value:""},
     {nom:"Message",value:""},
   ]
+  lg = "en";
 
   fadeState = 'hidden';
 
   animations = ['animate-rotate', 'animate-zoom', 'animate-flip'];
   currentAnimation = '';
 
-  data : any = {
-    menus: [
-        "Accueil",
-        "Nos Solutions",
-        "A Propos",
-        "Contact"
-    ]
-  }
+  menus:any     = DATA.menus;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     let innerHeight = event.target.innerHeight;
     let innerWidth = event.target.innerWidth;
-
-    console.log(innerHeight, innerWidth);
 
     if (innerHeight > innerWidth && innerWidth < this.mobileThreshold){this.mobile = true;}
     else {this.mobile = false;}

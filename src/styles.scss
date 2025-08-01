@@ -92,12 +92,21 @@ button:hover{
         margin: auto;
         height: 200px;
 }
+.sacem .tinyimg{
+  max-width: 15vw;
+  height:unset;
+}
 .mediumimg{
         border-radius: 20px;
         margin: auto;
         height: 300px;
         border: 5px ridge var(--bleufonce);
   filter: blur(1px);
+}
+
+.onlyOpacity{
+  opacity: 0;
+  transition: opacity 1.2s ease-out, scale 0.5s !important ;
 }
 
 .fromRight{
@@ -112,7 +121,7 @@ button:hover{
     transition: transform 0.7s ease-out, opacity 0.7s ease-out!important;
 }
 
-.fromLeft.enter-from-direction, .fromRight.enter-from-direction {
+.onlyOpacity.enter-from-direction, .fromLeft.enter-from-direction, .fromRight.enter-from-direction {
     opacity: 1!important;
     transform: translateX(0)!important;
 }

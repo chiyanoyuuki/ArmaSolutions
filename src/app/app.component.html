@@ -1,12 +1,13 @@
-<div class="menus flex">
+<div class="menus flex onlyOpacity" appScrollAppear>
   <div class="imgs">
     <img src="logofull0.png" [ngClass]="currentAnimation"/>
     <img src="logofull1.png" />
   </div>
-  <div class="flex around margauto" *ngIf="!mobile">
-    <p *ngFor="let menu of data.menus;let i=index" (click)="clickMenu(i)" [class.clicked]="menuClicked==i" class="clickable">{{menu}}</p>
+  <div class="flex around margauto icons" *ngIf="!mobile">
+    <p *ngFor="let menu of menus[lg];let i=index" (click)="clickMenu(i)" [class.clicked]="menuClicked==i" class="clickable">{{menu}}</p>
+    <img class="clickable" (click)="lg=='fr'?lg='en':lg='fr'" src="{{lg}}.png"/>
   </div>
-  <div class="flex around margauto mobile" *ngIf="mobile">
+  <div class="flex around margauto mobile icons" *ngIf="mobile">
     <svg (click)="clickMenu(0)" [class.clicked]="menuClicked==0" class="clickable" width="48" height="48" fill="rgb(50,109,252)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
     </svg>
@@ -19,6 +20,7 @@
     <svg (click)="clickMenu(3)" [class.clicked]="menuClicked==3" class="clickable" width="48" height="48" fill="rgb(50,109,252)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
     </svg>
+    <img class="clickable" (click)="lg=='fr'?lg='en':lg='fr'" src="{{lg}}.png"/>
   </div>
 </div>
 
@@ -27,15 +29,24 @@
 <div class="content" [class.mobile]="mobile" >
   <div *ngIf="menuClicked==0">
     <div class="flex top">
-      <div class="resume">
+
+      <div class="resume onlyOpacity" *ngIf="lg=='fr'" appScrollAppear>
         <p class="bigtxt">Des <span class="blue bigtxt">solutions digitales</span> pour les professionnels</p>
         <p class="secondary">Automatisez vos processus et optimisez votre productivité</p>
         <button (click)="clickMenu(1)" [class.move-right]="moved">En savoir plus →</button>
       </div>
+      <div class="resume onlyOpacity" *ngIf="lg=='en'" appScrollAppear>
+        <p class="bigtxt">
+          <span class="blue bigtxt">Digital solutions</span> for professionals
+        </p>
+        <p class="secondary">Automate your processes and boost productivity</p>
+        <button (click)="clickMenu(1)" [class.move-right]="moved">Learn more →</button>
+      </div>
+
       <img class="imgpc fromRight" src="pc.png" />
     </div>
 
-    <div class="bottom flex wrap around">
+    <div class="bottom flex wrap around onlyOpacity" *ngIf="lg=='fr'" appScrollAppear>
       <div class="bloc">
         <img src="roue.png" class="gear"/>
         <p class="coloralternate">Automatisation</p>
@@ -58,7 +69,30 @@
       </div>
     </div>
 
-    <div class="avis fromLeft margbot" appScrollAppear>
+    <div class="bottom flex wrap around onlyOpacity" *ngIf="lg=='en'" appScrollAppear >
+      <div class="bloc">
+        <img src="roue.png" class="gear" />
+        <p class="coloralternate">Automation</p>
+        <p class="secondary">Save time by automating repetitive tasks</p>
+      </div>
+      <div class="bloc">
+        <img src="doc.png" />
+        <p class="coloralternate">Custom Documents</p>
+        <p class="secondary">Easily generate personalized documents on demand</p>
+      </div>
+      <div class="bloc">
+        <img src="db.png" />
+        <p class="coloralternate">Data Management</p>
+        <p class="secondary">Leverage your data with powerful analysis tools</p>
+      </div>
+      <div class="bloc">
+        <img src="cubes.png" />
+        <p class="coloralternate">Centralization</p>
+        <p class="secondary">Access all your specialized tools from one platform</p>
+      </div>
+    </div>
+
+    <div class="avis fromLeft margbot" appScrollAppear *ngIf="lg=='fr'">
       <p class="title"><span class="blue title">Cloé C</span> - Première réussite</p>
       <div class="flex experience">
         <img class="tinyimg" src="cloe.jpg"/>
@@ -67,8 +101,37 @@
       <button class="link" (click)="openSiteCloe()">Son site</button>
     </div>
 
-    <div class="carousel-container">
-      <p class="bigtxt blue margbot">Certains projets</p>
+    <div class="avis fromLeft margbot" appScrollAppear *ngIf="lg=='en'">
+      <p class="title"><span class="blue title">Cloé C</span> – First success</p>
+      <div class="flex experience">
+        <img class="tinyimg" src="cloe.jpg" />
+        <p class="secondary">
+          <b>Cloé C</b>, a self-employed makeup artist and bridal hair specialist, <b>was losing valuable time</b> managing her <b>schedules, quotes, and invoices</b> across multiple <b>disconnected tools.</b> She also needed a <b>website to promote her business.</b> Thanks to my solutions, she now has a <b>single platform</b> where she manages her schedule and generates <b>custom quotes and invoices</b> in just a few clicks, all tailored to her branding. I also built her a <b>complete website</b> that showcases her services and helps expand her network and clientele in the wedding industry.
+        </p>
+      </div>
+      <button class="link" (click)="openSiteCloe()">Her website</button>
+    </div>
+
+    <div class="avis fromRight margbot sacem" appScrollAppear *ngIf="lg=='fr'">
+      <p class="title"><span class="blue title">Sacem</span> - Autre réussite</p>
+      <div class="flex experience">
+        <p class="secondary">Dans le cadre de ma mission à la <b>SACEM</b>, j’ai conçu un robot capable de <b>traiter automatiquement des fichiers de formats variés</b> (.pdf, .otf, .xls, etc.), contenant des données souvent <b>non uniformes, désorganisées ou partiellement invalides</b>, envoyées par des acteurs comme <b>Netflix, Google ou Amazon</b>. Ce robot analysait, corrigeait et transformait l’ensemble en un format de sortie <b>standardisé, propre et exploitable</b>. Avant son déploiement, ce travail mobilisait une équipe dédiée pendant <b>plusieurs semaines, voire plusieurs mois</b>, selon la complexité et la volumétrie des fichiers. Avec ma solution, ce traitement est devenu <b>quasi-instantané</b> : chaque fichier est désormais analysé et converti en quelques minutes, quel que soit son origine ou sa taille. Ce gain d’efficacité a transformé le flux de traitement de données au sein de la SACEM.</p>
+        <img class="tinyimg" src="sacem.png"/>
+      </div>
+    </div>
+
+    <div class="avis fromRight margbot sacem" appScrollAppear *ngIf="lg=='en'">
+      <p class="title"><span class="blue title">Sacem</span> – Another success</p>
+      <div class="flex experience">
+        <p class="secondary">
+          As part of my mission at <b>SACEM</b>, I developed a bot capable of <b>automatically processing files of various formats</b> (.pdf, .otf, .xls, etc.) containing data that was often <b>non-uniform, disorganized, or partially invalid</b>, submitted by players like <b>Netflix, Google, and Amazon</b>. The bot would analyze, correct, and convert all inputs into a <b>clean, standardized, and usable format</b>. Previously, this task required a dedicated team for <b>several weeks or even months</b> depending on file complexity and volume. With my solution, the processing became <b>nearly instantaneous</b>: each file is now analyzed and transformed within minutes, regardless of its source or size. This efficiency boost <b>transformed the data processing workflow</b> at SACEM.
+        </p>
+        <img class="tinyimg" src="sacem.png" />
+      </div>
+    </div>
+
+    <div class="carousel-container onlyOpacity" appScrollAppear>
+      <p class="bigtxt blue margbot">{{lg=='fr'?'D\'autres projets':'Other projects'}}</p>
       <div class="carousel-track">
         <img src="1/3.png"/>
         <img src="1/1.png"/>
@@ -94,7 +157,7 @@
 
   </div>
 
-  <div class="mentions" *ngIf="menuClicked==-1">
+  <div class="mentions" *ngIf="menuClicked==-1 && lg=='fr'">
     <p class=" bigtxt blue">Mentions Légales</p>
     <p>Conformément aux dispositions des articles 6-III et 19 de la loi n°2004-575 du 21 juin 2004 pour la Confiance dans l’économie numérique, dite L.C.E.N., il est porté à la connaissance des utilisateurs et visiteurs du site les présentes mentions légales.</p>
     <p class="blue">Éditeur du site</p>
@@ -129,7 +192,50 @@
     <p>Tout litige sera de la compétence exclusive des tribunaux français.</p>
   </div>
 
-  <div class="politique" *ngIf="menuClicked==-2">
+  <div class="mentions" *ngIf="menuClicked==-1 && lg=='en'">
+    <p class="bigtxt blue">Legal Notice</p>
+    <p>In accordance with Articles 6-III and 19 of French Law No. 2004-575 of June 21, 2004 on Confidence in the Digital Economy (L.C.E.N.), users and visitors are hereby informed of the following legal information.</p>
+
+    <p class="blue">Website Publisher</p>
+    <p><b>Name:</b> POURE Charles</p>
+    <p><b>Status:</b> Sole Proprietor – Micro-Enterprise</p>
+    <p><b>SIRET:</b> 943032342 00017</p>
+    <p><b>Publication Manager:</b> SwissKey Solutions</p>
+    <p><b>Address:</b> Gargas, France</p>
+    <p><b>Phone:</b> +33 6 82 01 57 34</p>
+    <p><b>Email:</b> swisskeysolutions.contact&#64;gmail.com</p>
+    <p><b>Website:</b> <a href="https://swisskey-solutions.com" target="_blank">https://swisskey-solutions.com/</a></p>
+    <p>VAT not applicable under Article 293 B of the French Tax Code.</p>
+
+    <p class="blue">Hosting</p>
+    <p><b>Host:</b> OVH</p>
+    <p><b>Address:</b> 2 rue Kellermann – 59100 Roubaix – France</p>
+    <p><b>Website:</b> www.ovh.com</p>
+
+    <p class="blue">Intellectual Property</p>
+    <p>All elements on this website (texts, images, graphics, logo, icons, etc.) are the exclusive property of SwissKey Solutions, unless stated otherwise.</p>
+    <p>Any reproduction, representation, modification, publication, or adaptation of any part of the site, by any means, is prohibited without prior written permission.</p>
+
+    <p class="blue">Liability</p>
+    <p>The publisher strives to provide the most accurate information possible. However, it cannot be held liable for omissions, inaccuracies, or lack of updates.</p>
+    <p>The user is responsible for how they use the information provided on the site.</p>
+
+    <p class="blue">Personal Data</p>
+    <p>Any data collected via the contact form is used solely to respond to messages.</p>
+    <p>No personal data is sold or shared with third parties.</p>
+    <p>In accordance with the GDPR, you may request to view, modify, or delete your data by emailing: <a href="mailto:swisskeysolutions.contact@gmail.com">swisskeysolutions.contact&#64;gmail.com</a>.</p>
+
+    <p class="blue">Cookies</p>
+    <p>This website may use cookies to enhance the user experience.</p>
+    <p>You may configure your browser to block these cookies.</p>
+
+    <p class="blue">Governing Law</p>
+    <p>This legal notice is governed by French law.</p>
+    <p>Any disputes fall under the exclusive jurisdiction of French courts.</p>
+  </div>
+
+
+  <div class="politique" *ngIf="menuClicked==-2 && lg=='fr'">
     <p class="bigtxt blue">Politique de confidentialité</p>
     <p class="blue">Mise à jour le : 13/07/2025</p>
     <p>Le site <a href="https://swisskey-solutions.com" target="_blank">https://swisskey-solutions.com</a> s’engage à garantir la confidentialité des données personnelles de ses utilisateurs et à respecter la législation en vigueur, notamment le Règlement (UE) 2016/679 (RGPD).</p>
@@ -184,7 +290,62 @@
 
   </div>
 
-  <div *ngIf="!mobile&&menuClicked==1">
+  <div class="politique" *ngIf="menuClicked==-2 && lg=='en'">
+    <p class="bigtxt blue">Privacy Policy</p>
+    <p class="blue">Last updated: 07/13/2025</p>
+    <p>The website <a href="https://swisskey-solutions.com" target="_blank">https://swisskey-solutions.com</a> is committed to protecting user privacy and complying with applicable laws, including Regulation (EU) 2016/679 (GDPR).</p>
+
+    <p class="blue">Data Collected</p>
+    <p>When you use our website or fill out a contact form, we may collect the following data:</p>
+    <p>• First and last name</p>
+    <p>• Email address</p>
+    <p>• Phone number (if provided)</p>
+    <p>• Company or business name</p>
+    <p>• Message or information shared via forms</p>
+    <p>We do not collect any sensitive data (religion, health, political views, etc.).</p>
+
+    <p class="blue">Data Usage</p>
+    <p>This data is used only to:</p>
+    <p>• Respond to your messages or quote requests</p>
+    <p>• Contact you regarding your project</p>
+    <p>• Improve our service and website</p>
+    <p>Data is never sold, exchanged, or shared with third parties.</p>
+
+    <p class="blue">Cookies</p>
+    <p>The site may use cookies to enhance user experience.</p>
+    <p>You can configure your browser to block these cookies.</p>
+
+    <p class="blue">Data Retention</p>
+    <p>• 12 months after last contact if no collaboration took place</p>
+    <p>• Up to 3 years if a commercial relationship was established (unless legally required otherwise)</p>
+
+    <p class="blue">Your Rights</p>
+    <p>Under applicable law, you have the following rights:</p>
+    <p>• Right to access your data</p>
+    <p>• Right to rectify or delete your data</p>
+    <p>• Right to object to or limit processing</p>
+    <p>• Right to data portability</p>
+    <p>You can exercise these rights by emailing: <a href="mailto:swisskeysolutions.contact@gmail.com">swisskeysolutions.contact&#64;gmail.com</a></p>
+
+    <p class="blue">Data Controller</p>
+    <p>Data is processed by:</p>
+    <p>• Charles POURE</p>
+    <p>• Sole Proprietor – SIRET 943032342 00017</p>
+    <p>• Address available upon request</p>
+
+    <p class="blue">Security</p>
+    <p>We implement all necessary technical and organizational measures to ensure your data is secure (HTTPS, restricted access, regular backups, etc.).</p>
+
+    <p class="blue">Changes</p>
+    <p>This policy may be updated at any time. The last update date is shown at the top of the page.</p>
+
+    <p class="blue">Contact</p>
+    <p>For any questions regarding data privacy:</p>
+    <p>Email: <a href="mailto:swisskeysolutions.contact@gmail.com">swisskeysolutions.contact&#64;gmail.com</a></p>
+  </div>
+
+
+  <div *ngIf="!mobile&&menuClicked==1 && lg=='fr'">
     <p class="blue bigtxt">Nos solutions digitales sur mesure</p>
     <p class="blue margbot">Des outils pensés pour simplifier votre quotidien professionnel.</p>
     
@@ -234,8 +395,58 @@
     </div>
 
   </div>
+  <div *ngIf="!mobile && menuClicked==1 && lg=='en'">
+  <p class="blue bigtxt">Tailor-made digital solutions</p>
+  <p class="blue margbot">Tools designed to simplify your professional routine.</p>
 
-  <div class="mobilesolutions" *ngIf="mobile&&menuClicked==1">
+  <div class="flex between fromRight" appScrollAppear>
+    <div class="txt">
+      <p class="blue">Website creation</p>
+      <p>Showcase your business with a professional, responsive, and fully customized website.</p>
+      <p>Integrated into your platform, it enhances your brand and makes client contact easier.</p>
+    </div>
+    <img class="mediumimg fitimg" src="1/1.png"/>
+  </div>
+
+  <div class="flex between fromLeft" appScrollAppear>
+    <img class="mediumimg fitimg" src="1/0.png"/>
+    <div class="txt">
+      <p class="blue">Tool centralization</p>
+      <p>No more scattered tools. Everything is brought together in one clear interface, custom-built to your needs.</p>
+      <p>A unique, fully personalized solution to manage your entire business.</p>
+    </div>
+  </div>
+
+  <div class="flex between fromRight" appScrollAppear>
+    <div class="txt">
+      <p class="blue">Custom documents</p>
+      <p>Create quotes, invoices, or contracts in a few clicks with your brand identity.</p>
+      <p>Each document is generated automatically from your data, ready to send or print.</p>
+    </div>
+    <img class="mediumimg fitimg" src="3/1.png"/>
+  </div>
+
+  <div class="flex between fromLeft" appScrollAppear>
+    <img class="mediumimg fitimg" src="2/1.png"/>
+    <div class="txt">
+      <p class="blue">Limitless technical expertise</p>
+      <p>Your needs are unique? Perfect. Whether it's a showcase site, a custom platform, a mobile app, a smart bot, or even a full video game—I can build it from scratch, based on your simplest or most ambitious ideas.</p>
+      <p>I'm comfortable with interfaces, databases, business logic, performance optimization, complex animations, AI, APIs, and much more. Got an unusual idea or technical challenge? I can turn it into a working solution.</p>
+    </div>
+  </div>
+
+  <div class="flex between fromRight" appScrollAppear>
+    <div class="txt">
+      <p class="blue">Automation, management, and data analysis</p>
+      <p>Automate time-consuming and repetitive tasks in your business: email sending, follow-ups, confirmations, reminders, or backups. Save time and reduce manual errors.</p>
+      <p>Monitor your activity in real time with clear indicators: revenue, client distribution, sales history, and custom stats tailored to your field.</p>
+    </div>
+    <img class="mediumimg fitimg" src="tarif.jpg"/>
+  </div>
+</div>
+
+
+  <div class="mobilesolutions" *ngIf="mobile&&menuClicked==1 && lg=='fr'">
     <p class="blue bigtxt">Nos solutions digitales sur mesure</p>
     <p class="blue margbot">Des outils pensés pour simplifier votre quotidien professionnel.</p>
     
@@ -285,8 +496,58 @@
     </div>
 
   </div>
+  <div class="mobilesolutions" *ngIf="mobile && menuClicked==1 && lg=='en'">
+  <p class="blue bigtxt">Tailor-made digital solutions</p>
+  <p class="blue margbot">Tools designed to simplify your professional routine.</p>
 
-  <div class="about" *ngIf="menuClicked==2">
+  <div>
+    <div class="txt">
+      <p class="blue">Website creation</p>
+      <p>Showcase your business with a professional, responsive, and fully customized website.</p>
+      <p>Integrated into your platform, it enhances your brand and makes client contact easier.</p>
+    </div>
+    <img class="mediumimg fitimg fromRight" src="1/1.png" appScrollAppear />
+  </div>
+
+  <div>
+    <div class="txt">
+      <p class="blue">Tool centralization</p>
+      <p>No more scattered tools. Everything is brought together in one clear interface, custom-built to your needs.</p>
+      <p>A unique, fully personalized solution to manage your entire business.</p>
+    </div>
+    <img class="mediumimg fitimg fromLeft" src="1/0.png" appScrollAppear />
+  </div>
+
+  <div>
+    <div class="txt">
+      <p class="blue">Custom documents</p>
+      <p>Create quotes, invoices, or contracts in a few clicks with your brand identity.</p>
+      <p>Each document is generated automatically from your data, ready to send or print.</p>
+    </div>
+    <img class="mediumimg fitimg fromRight" src="3/1.png" appScrollAppear />
+  </div>
+
+  <div>
+    <div class="txt">
+      <p class="blue">Limitless technical expertise</p>
+      <p>Your needs are unique? Perfect. Whether it's a showcase site, a custom platform, a mobile app, a smart bot, or even a full video game—I can build it from scratch, based on your simplest or most ambitious ideas.</p>
+      <p>I'm comfortable with interfaces, databases, business logic, performance optimization, complex animations, AI, APIs, and much more. Got an unusual idea or technical challenge? I can turn it into a working solution.</p>
+    </div>
+    <img class="mediumimg fitimg fromLeft" src="2/1.png" appScrollAppear />
+  </div>
+
+  <div>
+    <div class="txt">
+      <p class="blue">Automation, management, and data analysis</p>
+      <p>Automate time-consuming and repetitive tasks in your business: email sending, follow-ups, confirmations, reminders, or backups. Save time and reduce manual errors.</p>
+      <p>Monitor your activity in real time with clear indicators: revenue, client distribution, sales history, and custom stats tailored to your field.</p>
+    </div>
+    <img class="mediumimg fitimg fromRight" src="tarif.jpg" appScrollAppear />
+  </div>
+</div>
+
+
+  <div class="about" *ngIf="menuClicked==2 && lg=='fr'">
 
     <div class="fromLeft" appScrollAppear>
       <p class="blue">Une mission simple : simplifier la vie des professionnels</p>
@@ -328,13 +589,56 @@
     </div>
 
   </div>
+  <div class="about" *ngIf="menuClicked==2 && lg=='en'">
 
-  <div class="contact" *ngIf="menuClicked==3">
+  <div class="fromLeft" appScrollAppear>
+    <p class="blue">A simple mission: simplify the lives of professionals</p>
+    <p>As a passionate developer, I’ve often met freelancers and small businesses overwhelmed by scattered tools, endless Excel sheets, or poorly adapted apps. That’s why I created SwissKey Solutions: to build custom digital platforms focused on saving time, improving efficiency, and keeping things simple.</p>
+  </div>
 
-    <p class="blue bigtxt">Discutons de votre projet</p>
-    <p class="blue margbot">Que vous ayez une idée précise ou simplement l’envie de faire évoluer votre activité, je suis à votre écoute. N’hésitez pas à me contacter, je réponds généralement dans la journée.</p>
+  <div class="fromRight" appScrollAppear>
+    <p class="blue">My background and work philosophy</p>
+    <p class="margbot">With over 10 years of experience in web and software development, I’ve worked in large IT service companies and directly for clients across many sectors. This variety taught me to handle complex projects, meet strict standards in performance and security, and adapt to different business environments.</p>
+    <p>Over the years, I’ve refined a development approach that prioritizes clean, maintainable, and efficient code. I manage the entire creation chain—from needs analysis to deployment—covering architecture, UX design, development, testing, and support.</p>
+  </div>
 
-    <div class="inputs">
+  <div class="fromLeft" appScrollAppear>
+    <p class="blue">100% original code, tailored to each client</p>
+    <p class="margbot">Every project I build is from scratch—no prebuilt templates, no recycled code. Each line is written specifically for the client’s needs, business logic, user habits, and long-term goals. This ensures a solution that is:</p>
+    <p>- Fully customized</p>
+    <p>- Lightweight and optimized</p>
+    <p>- Scalable over time</p>
+    <p class="margbot">- Unique, with a distinct identity</p>
+    <p>Whether it’s a business app, management interface, or showcase site, I commit to delivering a hand-crafted product aligned with your processes and your brand.</p>
+  </div>
+
+  <div class="fromRight" appScrollAppear>
+    <p class="blue">Tailored support</p>
+    <p>Beyond coding, I focus on understanding your real-world challenges. My job is not just to build tools, but to translate your business into useful, intuitive, and lasting digital solutions.</p>
+    <p class="margbot">My working style is based on:</p>
+    <p>direct collaboration without jargon –</p>
+    <p>transparent pricing and timelines –</p>
+    <p>rigorous execution –</p>
+    <p>and a constant drive to deliver “better than good” –</p>
+  </div>
+
+  <div class="fromLeft" appScrollAppear>
+    <p class="blue">Transparent and flexible pricing</p>
+    <p class="margbot">Since every project is unique, my pricing adapts to your needs and workflow. I offer two collaboration modes:</p>
+    <p>- Hourly rate, ideal for small, evolving, or one-off tasks</p>
+    <p class="margbot">- Fixed-price packages, defined together based on your specifications—ideal for complete projects like websites or business platforms</p>
+    <p>In both cases, you always know what you're paying for: no surprises, no hidden fees. I prioritize clarity, flexibility, and open communication so you can move forward with confidence.</p>
+  </div>
+
+</div>
+
+
+  <div class="contact" *ngIf="menuClicked==3 && lg=='fr'">
+
+    <p class="blue bigtxt onlyOpacity" appScrollAppear>Discutons de votre projet</p>
+    <p class="blue margbot onlyOpacity" appScrollAppear>Que vous ayez une idée précise ou simplement l’envie de faire évoluer votre activité, je suis à votre écoute. N’hésitez pas à me contacter, je réponds généralement dans la journée.</p>
+
+    <div class="inputs onlyOpacity" appScrollAppear>
       <div class="flex">
         <p>Nom, Prénom : </p>
         <input type="text" placeholder="John Doe.." [(ngModel)]="contact[0].value"/>
@@ -356,22 +660,62 @@
         <textarea type="text" placeholder="Votre demande.." [(ngModel)]="contact[4].value"></textarea>
       </div>
     </div>
-    <div class="bottom flex between">
+    <div class="bottom flex between onlyOpacity" appScrollAppear>
       <p class="blue">Vos données ne seront jamais partagées.</p>
       <p class="secondary">Disponible du lundi au vendredi de 9h à 18h</p>
     </div>
-    <button class="auto" (click)="sendEmail()">Envoyer</button>
+    <button class="auto onlyOpacity" (click)="sendEmail()" appScrollAppear>Envoyer</button>
     
   </div>
 
+  <div class="contact" *ngIf="menuClicked==3 && lg=='en'">
+
+  <p class="blue bigtxt onlyOpacity" appScrollAppear>Let's discuss your project</p>
+  <p class="blue margbot onlyOpacity" appScrollAppear>
+    Whether you have a precise idea or just want to develop your business, I’m here to listen. Feel free to contact me; I usually respond within the day.
+  </p>
+
+  <div class="inputs onlyOpacity" appScrollAppear>
+    <div class="flex">
+      <p>Name, First name:</p>
+      <input type="text" placeholder="John Doe.." [(ngModel)]="contact[0].value"/>
+    </div>
+    <div class="flex">
+      <p>Email:</p>
+      <input type="text" placeholder="john.doe@gmail.com.." [(ngModel)]="contact[1].value"/>
+    </div>
+    <div class="flex">
+      <p>Phone:</p>
+      <input type="text" placeholder="+1 123 456 7890" [(ngModel)]="contact[2].value"/>
+    </div>
+    <div class="flex">
+      <p>Your business / company:</p>
+      <input type="text" placeholder="Your business or company name" [(ngModel)]="contact[3].value"/>
+    </div>
+    <div class="flex">
+      <p>Message:</p>
+      <textarea placeholder="Your request.." [(ngModel)]="contact[4].value"></textarea>
+    </div>
+  </div>
+
+  <div class="bottom flex between onlyOpacity" appScrollAppear>
+    <p class="blue">Your data will never be shared.</p>
+    <p class="secondary">Available Monday to Friday, 9am to 6pm</p>
+  </div>
+
+  <button class="auto onlyOpacity" (click)="sendEmail()" appScrollAppear>Send</button>
+
 </div>
 
-<footer class="flex between" [class.footermobile]="mobile">
+
+</div>
+
+<footer class="flex between onlyOpacity" [class.footermobile]="mobile" appScrollAppear>
   <div class="footer-links">
-    <p *ngFor="let menu of data.menus;let i=index" class="clickable" (click)="clickMenu(i)" [class.blue]="menuClicked==i">{{menu}}</p>
+    <p *ngFor="let menu of menus[lg];let i=index" class="clickable" (click)="clickMenu(i)" [class.blue]="menuClicked==i">{{menu}}</p>
     <p>&nbsp;</p>
-    <p class="clickable" (click)="clickMenu(-1)" [class.blue]="menuClicked==-1">Mentions légales</p>
-    <p class="clickable" (click)="clickMenu(-2)" [class.blue]="menuClicked==-2">Politique de confidentialité</p>
+    <p class="clickable" (click)="clickMenu(-1)" [class.blue]="menuClicked==-1">{{lg=='fr'?'Mentions légales':'Legal Notice'}}</p>
+    <p class="clickable" (click)="clickMenu(-2)" [class.blue]="menuClicked==-2">{{lg=='fr'?'Politique de confidentialité':'Privacy Policy'}}</p>
   </div>
   <div class="flex">
     <img class="tinyimg" src="4/0.png" *ngIf="mobile"/>
@@ -380,7 +724,7 @@
       <p><a href="mailto:swisskeysolutions.contact@gmail.com">swisskeysolutions.contact&#64;gmail.com</a></p>
       <p>+33 6 82 01 57 34</p>
       <p>&nbsp;</p>
-      <p>© 2025 SwissKey Solutions. Tous droits réservés.</p>
+      <p>© 2025 SwissKey Solutions. {{lg=='fr'?'Tous droits réservés':'All rights reserved'}}</p>
     </div>
     <img class="tinyimg" src="4/0.png" *ngIf="!mobile"/>
   </div>

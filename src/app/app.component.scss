@@ -9,6 +9,15 @@
     width: 90vw;
     border-bottom: 1px solid #00000020;
     padding-bottom: 1vh;
+    .icons{
+        img{
+            width: 36px;
+            height: 28px;
+            margin-top: auto;
+            margin-bottom: auto;
+            filter: drop-shadow(1px 1px 2px black);
+        }
+    }
     .margauto{
         margin:auto;
     }
@@ -102,6 +111,9 @@
     filter: drop-shadow(2px 2px 3px black);
     padding: 2vh 2vw;
     border-radius: 15px;
+    width: 85%;
+    margin: auto;
+    margin-bottom: 5vh;
     .title{
         margin-bottom: 2vh;
         font-size: 20px;
@@ -376,4 +388,3 @@ footer{
   pointer-events: none;
   transition: unset!important;
 }
-
