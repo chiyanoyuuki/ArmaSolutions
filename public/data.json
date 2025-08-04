@@ -1,6 +1,6 @@
 {
   "menus": {
-    "fr": ["Accueil", "Nos Solutions", "A Propos", "Contact"],
-    "en": ["Home", "Our Solutions", "About Us", "Contact"]
+    "fr": ["Accueil", "Nos Solutions", "A Propos", "Tarifs", "Contact"],
+    "en": ["Home", "Our Solutions", "About Us", "Pricing", "Contact"]
   }
 }
