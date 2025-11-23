@@ -349,10 +349,10 @@ button:hover {
     top: 16%;
   }
   .top {
-    padding: 5vh 10vw;
-    width: 80vw;
+    padding: 5vh 10vw !important;
+    width: 80vw !important;
     .imgpc {
-      height: 12vh;
+      height: 12vh !important;
     }
   }
 }
