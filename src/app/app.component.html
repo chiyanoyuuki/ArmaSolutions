@@ -102,7 +102,11 @@
 <div class="content" [class.mobile]="mobile">
   <div *ngIf="menuClicked == 0">
     <p class="title toptitle">
-      L’ingénierie digitale moderne, claire et accessible.
+      {{
+        lg == "fr"
+          ? "L’ingénierie digitale moderne, claire et accessible."
+          : "Modern, clear, and accessible digital engineering."
+      }}
     </p>
     <div
       class="venn"
@@ -144,6 +148,64 @@
           alt="Logo SwissKey Solutions"
           class="center__logo"
         />
+      </div>
+    </div>
+
+    <div class="topblocs onlyOpacity" *ngIf="lg == 'fr'" appScrollAppear>
+      <div>
+        <p class="title">High Tech</p>
+        <p>
+          Des technologies de pointe pour des résultats concrets. Développement
+          sur mesure, automatisation intelligente et outils performants : chaque
+          solution est pensée pour optimiser vos processus, renforcer votre
+          efficacité et vous donner une longueur d’avance.
+        </p>
+      </div>
+      <div>
+        <p class="title">Fiabilité</p>
+        <p>
+          Des solutions conçues pour durer. Architecture robuste, développements
+          adaptés à vos besoins et haut niveau de sécurité : chaque projet est
+          pensé pour rester stable, fiable et performant dans le temps.
+        </p>
+      </div>
+      <div>
+        <p class="title">Simplicité</p>
+        <p>
+          Des outils faciles à comprendre et agréables à utiliser. Explications
+          limpides, accompagnement personnalisé et approche centrée utilisateur
+          : chaque solution est conçue pour rendre la technologie accessible et
+          intuitive.
+        </p>
+      </div>
+    </div>
+    <div class="topblocs onlyOpacity" *ngIf="lg == 'en'" appScrollAppear>
+      <div>
+        <p class="title">High Tech</p>
+        <p>
+          Cutting-edge technologies for tangible results. Tailor-made
+          development, intelligent automation, and high-performance tools: every
+          solution is designed to optimize your processes, strengthen your
+          efficiency, and give you a competitive edge.
+        </p>
+      </div>
+      <div>
+        <p class="title">Reliability</p>
+        <p>
+          Solutions built to last. A robust architecture, development aligned
+          with your needs, and a high level of security: every project is
+          crafted to remain stable, reliable, and consistently high-performing
+          over time.
+        </p>
+      </div>
+      <div>
+        <p class="title">Simplicity</p>
+        <p>
+          Tools that are easy to understand and pleasant to use. Clear
+          explanations, personalized guidance, and a user-centered approach:
+          every solution is designed to make technology accessible and
+          intuitive.
+        </p>
       </div>
     </div>
 

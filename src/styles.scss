@@ -1,5 +1,5 @@
 :root {
-  --bleufonce: rgb(50, 109, 252);
+  --bleufonce: rgb(31, 74, 173);
   --bleuclair: #93c5fd;
   --txtnoir: #111827;
   --txtgris: #cacaca;
@@ -9,6 +9,10 @@
   --blue: rgb(4, 45, 98);
   --purple: rgb(64, 18, 104);
   --white: rgb(255, 255, 255);
+
+  --blue2: rgb(4, 45, 98, 0.2);
+  --purple2: rgb(64, 18, 104, 0.2);
+  --white2: rgb(255, 255, 255, 0.2);
 
   --size: 360px; /* taille du conteneur (modifiable) */
   --circle-size: calc(var(--size) * 0.65);
@@ -226,13 +230,14 @@ button:hover {
 .label {
   position: absolute;
   font-weight: 700;
-  font-size: 1.4rem;
+  font-size: 1.4rem !important;
   color: var(--label-color);
   background: rgba(255, 255, 255, 0);
   padding: 6px 10px;
   border-radius: 999px;
   transform: translateY(-50%);
   white-space: nowrap;
+  z-index: 999;
   filter: drop-shadow(1px 1px 2px black) drop-shadow(1px 1px 2px black);
 }
 .label--a {
@@ -287,6 +292,45 @@ button:hover {
     --size: 260px;
   }
   .label {
-    font-size: 0.85rem;
+    font-size: 0.85rem !important;
+  }
+}
+
+.topblocs {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5vh;
+  div {
+    width: 30%;
+    padding: 10px;
+    border-radius: 50px;
+    filter: drop-shadow(1px 1px 3px black) drop-shadow(1px 1px 3px black);
+    p:nth-child(1) {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 2vh;
+    }
+    p:nth-child(2) {
+      text-align: justify;
+    }
+  }
+  div:nth-child(1) {
+    background-color: var(--purple2);
+  }
+  div:nth-child(2) {
+    background-color: var(--blue2);
+  }
+  div:nth-child(3) {
+    background-color: var(--white2);
+  }
+}
+.mobile {
+  .topblocs {
+    display: unset;
+    div {
+      width: calc(100% - 80px);
+      margin-bottom: 3vh;
+      padding: 30px 40px;
+    }
   }
 }
