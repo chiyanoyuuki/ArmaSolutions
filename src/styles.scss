@@ -242,15 +242,15 @@ button:hover {
 }
 .label--a {
   left: 0%;
-  top: 75%;
+  top: 58%;
 }
 .label--b {
-  right: 0%;
-  top: 75%;
+  right: 6%;
+  top: 58%;
 }
 .label--c {
-  left: 33%;
-  top: 5%;
+  left: 32%;
+  top: 18%;
 }
 
 /* Centre (logo) */
@@ -311,7 +311,7 @@ button:hover {
       margin-bottom: 2vh;
     }
     p:nth-child(2) {
-      text-align: justify;
+      text-align: center;
     }
   }
   div:nth-child(1) {
@@ -325,12 +325,34 @@ button:hover {
   }
 }
 .mobile {
+  .toptitle {
+    font-size: 30px !important;
+  }
   .topblocs {
     display: unset;
     div {
       width: calc(100% - 80px);
       margin-bottom: 3vh;
       padding: 30px 40px;
+    }
+  }
+  .label--a {
+    left: 3%;
+    top: 57%;
+  }
+  .label--b {
+    right: 7%;
+    top: 57%;
+  }
+  .label--c {
+    left: 34%;
+    top: 16%;
+  }
+  .top {
+    padding: 5vh 10vw;
+    width: 80vw;
+    .imgpc {
+      height: 12vh;
     }
   }
 }
